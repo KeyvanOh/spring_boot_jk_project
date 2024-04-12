@@ -35,6 +35,7 @@
 <script>
 
 let sceneNumber = 0;
+//let sceneNumber = 1;
 
 let openedCnumber = new Set();
 
@@ -174,9 +175,23 @@ let loadList = function() {
 };
 
 
-loadList();
-	
+let showScene = function(sn) {
+	switch(sn) {
+		case 0: {
+			loadList();
+			break;
+		}
+		default: {
+		}
+	};
+};
+
+
+
+//loadList();
+showScene(sceneNumber);	
 setInterval( 
+	/*
 	function() {
 		switch(sceneNumber) {
 			case 0: {
@@ -186,7 +201,9 @@ setInterval(
 			default: {
 			}
 		};
-	}, 
+	},
+	*/
+	showScene(sceneNumber),
 	10000
 );
 	
