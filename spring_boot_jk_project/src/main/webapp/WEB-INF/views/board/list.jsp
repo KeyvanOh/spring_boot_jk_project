@@ -23,6 +23,7 @@
 ></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
+
 </head>
 <body>
 	<header>
@@ -45,17 +46,22 @@ let header = $("header");
 
 let showPost = function(value) {
 	let tdPtitle = $("#" + value.pnumber + " > .ptitle");
-	console.log(tdPtitle);
+	//console.log(tdPtitle);
+	let divPost = $("<div>");
+	divPost.appendTo(tdPtitle);
 	$("<h1>").text(value.ptitle)
-		.appendTo(tdPtitle);
+		//.appendTo(tdPtitle);
+		.appendTo(divPost);
 	$("<img>").attr("src", value.pimage)
 		.css("max-width", "100%")
 		.on("error", function() {
 			$(this).remove();
 		})
-		.appendTo(tdPtitle);
+		//.appendTo(tdPtitle);
+		.appendTo(divPost);
 	$("<p>").text(value.pcontent)
-		.appendTo(tdPtitle);				
+		//.appendTo(tdPtitle);				
+		.appendTo(divPost);				
 };
 
 
@@ -94,23 +100,18 @@ let loadList = function() {
 		console.log(board);
 		$.each(board, function( index, value ) {
 			  let tr = $("<tr>");
-			  //let trPtitle = $("<td>");
 			  tr
-			  	//.addClass("table-row")
 			  	.attr("id", value.pnumber)
 			  	.appendTo(table);
 			  $("<td>").text(value.pnumber)
 			  	//.addClass("pnumber")
 			  	.appendTo(tr);
-			  	//.css("width", "60px");
 			  $("<td>").text(value.pid)
 			  	.appendTo(tr);
-			  	//.css("width", "120px");
-			  $("<td>")
-			  //trPtitle
-			  	.addClass("ptitle")
-			  	.text(value.ptitle)
-			  	.appendTo(tr)
+			  let pPtitle = $("<p>");
+			  pPtitle.text(value.ptitle)
+			  	.css("padding", "0px")
+			  	.css("margin", "0px")
 			  	.on("click", function() {
 			  		if (openedCnumber.has(value.pnumber) == false) {
 				  		openedCnumber.add(value.pnumber);
@@ -119,69 +120,39 @@ let loadList = function() {
 			  		} else {
 			  			openedCnumber.delete(value.pnumber);
 			  			
-			  			$(this).children().remove();
+			  			//$(this).children().remove();
+			  			$(this).parent().children("div").remove();
 			  		};
-			  		
-			  		
-			  		//console.log(openedCnumber);
-			  		
-			  		//console.log($( this ).text());
-			  		//console.log(value.pnumber);
-			  		//console.log(value.pcontent);
-			  		//console.log(value.pimage);
-			  		
-			  		/*
-			  		$("<h1>").text(value.ptitle)
-		  				.appendTo($(this));
-			  		$("<img>").attr("src", value.pimage)
-			  			.css("max-width", "100%")
-			  			.on("error", function() {
-			  				$(this).remove();
-			  			})
-			  			.appendTo($(this));
-			  		$("<p>").text(value.pcontent)
-		  				.appendTo($(this));
-			  		*/
-			  		
-			  		
-			  		
 			  	});
+			  $("<td>")
+			  	.addClass("ptitle")
+			  	//.text(value.ptitle)
+			  	//.append("<p>" + value.ptitle)
+			  	.append(pPtitle)
+			  	.appendTo(tr);
+			  	/*
+			  	.on("click", function() {
+			  		if (openedCnumber.has(value.pnumber) == false) {
+				  		openedCnumber.add(value.pnumber);
+				  		
+				  		showPost(value);
+			  		} else {
+			  			openedCnumber.delete(value.pnumber);
+			  			
+			  			//$(this).children().remove();
+			  			$(this).children("div").remove();
+			  		};
+			  	});
+			  	*/
 			  if (openedCnumber.has(value.pnumber)) {
-				  
-				  
-			  		//console.log(openedCnumber);
-			  		
-			  		//console.log($( this ).text());
-			  		//console.log(value.pnumber);
-			  		//console.log(value.pcontent);
-			  		//console.log(value.pimage);
-			  		
-			  		/*)
-			  		$("<h1>").text(value.ptitle)
-		  				.appendTo($(trPtitle));
-			  		$("<img>").attr("src", value.pimage)
-			  			.css("max-width", "100%")
-			  			.on("error", function() {
-			  				$(this).remove();
-			  			})
-			  			.appendTo($(trPtitle));
-			  		$("<p>").text(value.pcontent)
-		  				.appendTo($(trPtitle));				  
-				  	*/
-				  	
 			  		showPost(value);
-			  		
 			  };
-			  	//.css("width", "600px");
 			  $("<td>").text(value.pdate)
 			  	.appendTo(tr);
-			  	//.css("width", "240px");
 			  $("<td>").text(value.phit)
 			  	.appendTo(tr);
-			  	//.css("width", "60px");
 			  $("<td>").text(value.plike)
 			  	.appendTo(tr);
-			  	//.css("width", "60px");
 			  tr.children().addClass("border-top");
 			  if (index == 19) {
 				  return false;
@@ -210,8 +181,10 @@ setInterval(
 			}
 			default: {
 			}
-		}				
-}, 10000);
+		};
+	}, 
+	1000000
+);
 	
 
 
@@ -224,5 +197,18 @@ console.log("HELLO jQuery");
 
 </script>
 
-
+<!-- <style>
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+p {
+	margin: 0;
+	padding: 0;
+	padding-bottom: 0;
+	border: 0;
+}
+</style>
+ -->
 </html>
