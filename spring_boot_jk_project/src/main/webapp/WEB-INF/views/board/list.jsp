@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>BOARD</title>
 <link
   href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
   rel="stylesheet"
@@ -34,12 +34,37 @@
 
 <script>
 
+//$session.set("id", "cutiepie");
+
+
+//console.log($.session.get("id"));
+
+//$.session.set('some key', value);
+//console.log($.session.get('mobile_no'));
+
+
+/* $(function() {
+ $.session.set("myVar", "Hello World!");
+});
+alert($.session.get("myVar"));
+*/
+
+//$.session.set('some key', 'a value');
+//localStorage.setItem('lastname','Smith');
+//alert(localStorage.getItem('lastname'));
+
+//sessionStorage.setItem('lastname','Smith');
+
+//alert(sessionStorage.getItem('lastname'));
+
+sessionStorage.setItem('id','jk');
+
 let sceneNumber = 0;
 //let sceneNumber = 1;
 
 let openedCnumber = new Set();
 
-console.log(openedCnumber);
+//console.log(openedCnumber);
 
 
 let header = $("header");
@@ -67,17 +92,14 @@ let showPost = function(value) {
 
 
 let loadList = function() {
-	$(".container").remove();
+	//$(".container").remove();
 	
 	let container = $("<div>");
-	//$(".table-row").remove();
 	container.addClass("container text-center")
-		//.css("margin", "1rem")
 		.appendTo(header);
 	let table = $("<table>")
 		.addClass("table")
 		.attr("border", "1")
-		//.css("margin-bottom", "0")
 		.appendTo(container);
 	let trColumn = $("<tr>");
 	trColumn.appendTo(table);
@@ -99,7 +121,7 @@ let loadList = function() {
 	$.get("/board/ajax_list", {
 	},
 	function(board, status) {
-		console.log(board);
+		//console.log(board);
 		$.each(board, function( index, value ) {
 			  let tr = $("<tr>");
 			  tr
@@ -166,7 +188,12 @@ let loadList = function() {
 		
 		let writeButton = $("<span>");
 		writeButton.text("글쓰기")
-			.appendTo(container);
+			.appendTo(container)
+			.on("click", function() {
+				//console.log("글쓰기");
+				sceneNumber = 1;
+				showScene(sceneNumber);	
+			});
 			//.css("position", "fixed")
 			//.css("top", "600px");			
 	});	
@@ -176,14 +203,30 @@ let loadList = function() {
 
 
 let showScene = function(sn) {
+	//sessionStorage.setItem('openedCnumber', openedCnumber);
+	$(".container").remove();
+	//console.log(sn);
 	switch(sn) {
 		case 0: {
 			loadList();
 			break;
 		}
+		case 1: {
+			let container = $("<div>");
+			container.addClass("container text-center border")
+				.text("eswgewg")
+				.appendTo(header);
+			
+			
+			
+			break;
+		}
 		default: {
+			
+			
 		}
 	};
+	console.log(sessionStorage.getItem("id"));
 };
 
 
@@ -203,19 +246,21 @@ setInterval(
 		};
 	},
 	*/
-	showScene(sceneNumber),
-	10000
+	function() {
+		showScene(sceneNumber)
+	},
+	1000
 );
-	
+
+
+
+
+
+
 
 
 
 console.log("HELLO jQuery");
-
-
-
-
-
 </script>
 
 <!-- <style>
