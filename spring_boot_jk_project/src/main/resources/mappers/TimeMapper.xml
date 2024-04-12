@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.sejong.ex.mapper.TimeMapper">
+    <select id="getTime2" resultType="string">
+        <![CDATA[
+        	select sysdate from dual
+        ]]>
+    </select>
+    <select id="getOnePlusOne2" resultType="string">
+        <![CDATA[
+        	select 1 + 1 from dual
+        ]]>
+    </select>
+</mapper>
