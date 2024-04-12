@@ -26,43 +26,107 @@
 </head>
 <body>
 	<header>
-		<div class="container">
-			<table border="1" class="table" style="margin-bottom: 0">
-				<tr>
-					<td>글번호</td>
-					<td>글쓴이</td>
-					<td>제목</td>
-					<td>작성날짜</td>
-					<td>조회수</td>
-					<td>추천</td>
-				</tr>
-				
-				
-<!-- 
-PNUMBER  NOT NULL NUMBER(4)      
-PID               VARCHAR2(12)   
-PTITLE            VARCHAR2(30)   
-PCONTENT          VARCHAR2(3000) 
-PIMAGE            VARCHAR2(1000) 
-PHIT              NUMBER(5)      
-PLIKE             NUMBER(5)     	
- -->				
-				<c:forEach var="board" items="${boards }">
-					<tr>
-						<td>${board.pnumber }</td>
-						<td>${board.pid }</td>
-						<td>${board.ptitle }</td>
-						<td>${board.pdate }</td>
-						<td>${board.phit }</td>
-						<td>${board.plike }</td>
-					</tr>
-				</c:forEach>
-			</table>
-			
-			<p style="margin-bottom: 0"><a href="${pageContext.request.contextPath}/emp/insert_view">글쓰기</a></p>
-		</div>
 	</header>
 	<main></main>
 
 </body>
+
+<script>
+
+
+
+
+let header = $("header");
+
+let loadList = function() {
+	$(".container").remove();
+	
+	let container = $("<div>");
+	//$(".table-row").remove();
+	container.addClass("container text-center")
+		.appendTo(header);
+	let table = $("<table>")
+		.addClass("table")
+		.attr("border", "1")
+		.css("margin-bottom", "0")
+		.appendTo(container);
+	let trColumn = $("<tr>");
+	trColumn.appendTo(table);
+	
+	$("<td>글번호</td>").appendTo(trColumn)
+		.css("width", "60px");
+	$("<td>글쓴이</td>").appendTo(trColumn)
+		.css("width", "120px");
+	$("<td>제목</td>").appendTo(trColumn)
+		.css("width", "600px");
+	$("<td>작성날짜</td>").appendTo(trColumn)
+		.css("width", "240px");
+	$("<td>조회수</td>").appendTo(trColumn)
+		.css("width", "60px");
+	$("<td>추천</td>").appendTo(trColumn)
+		.css("width", "60px");
+	
+	
+	$.get("/board/ajax_list", {
+	},
+	function(board, status) {
+		$.each(board, function( index, value ) {
+			  let tr = $("<tr>");
+			  tr.addClass("table-row")
+			  	.appendTo(table);
+			  $("<td>").text(value.pnumber)
+			  	.appendTo(tr);
+			  	//.css("width", "60px");
+			  $("<td>").text(value.pid)
+			  	.appendTo(tr);
+			  	//.css("width", "120px");
+			  $("<td>").text(value.ptitle)
+			  	.appendTo(tr);
+			  	//.css("width", "600px");
+			  $("<td>").text(value.pdate)
+			  	.appendTo(tr);
+			  	//.css("width", "240px");
+			  $("<td>").text(value.phit)
+			  	.appendTo(tr);
+			  	//.css("width", "60px");
+			  $("<td>").text(value.plike)
+			  	.appendTo(tr);
+			  	//.css("width", "60px");
+			  tr.children().addClass("border-top");
+			  if (index == 19) {
+				  return false;
+			  };
+		});
+		
+		let writeButton = $("<span>");
+		writeButton.text("글쓰기")
+			.appendTo(container);
+			//.css("position", "fixed")
+			//.css("top", "600px");			
+	});	
+	
+
+};
+
+
+loadList();
+	
+setInterval( 
+	function() {
+		loadList()
+	
+	}, 1000);
+	
+
+
+
+console.log("HELLO jQuery");
+
+
+
+
+
+</script>
+
+
 </html>

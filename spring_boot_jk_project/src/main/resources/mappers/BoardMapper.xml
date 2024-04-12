@@ -13,7 +13,7 @@ PLIKE             NUMBER(5)
 <mapper namespace="edu.sejong.ex.mapper.BoardMapper">
     <select id="selectList" resultType="edu.sejong.ex.vo.BoardVO">
         <![CDATA[
-        	select * from board
+        	select * from board order by pnumber desc
         ]]>
     </select>
 

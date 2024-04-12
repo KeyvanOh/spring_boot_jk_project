@@ -1,6 +1,6 @@
 package edu.sejong.ex.vo;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,7 +28,7 @@ public class BoardVO {
 	private int pnumber;
 	private String pid;
 	private String ptitle;
-	private Date pdate;
+	private Timestamp pdate;
 	private String pcontent;
 	private String pimage;
 	private int phit;
