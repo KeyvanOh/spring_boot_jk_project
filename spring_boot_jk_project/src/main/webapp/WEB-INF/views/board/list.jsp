@@ -35,11 +35,28 @@
 
 let sceneNumber = 0;
 
+let openedCnumber = new Set();
+
+console.log(openedCnumber);
+
 
 let header = $("header");
 
 
-
+let showPost = function(value) {
+	let tdPtitle = $("#" + value.pnumber + " > .ptitle");
+	console.log(tdPtitle);
+	$("<h1>").text(value.ptitle)
+		.appendTo(tdPtitle);
+	$("<img>").attr("src", value.pimage)
+		.css("max-width", "100%")
+		.on("error", function() {
+			$(this).remove();
+		})
+		.appendTo(tdPtitle);
+	$("<p>").text(value.pcontent)
+		.appendTo(tdPtitle);				
+};
 
 
 let loadList = function() {
@@ -74,9 +91,13 @@ let loadList = function() {
 	$.get("/board/ajax_list", {
 	},
 	function(board, status) {
+		console.log(board);
 		$.each(board, function( index, value ) {
 			  let tr = $("<tr>");
-			  tr.addClass("table-row")
+			  //let trPtitle = $("<td>");
+			  tr
+			  	//.addClass("table-row")
+			  	.attr("id", value.pnumber)
 			  	.appendTo(table);
 			  $("<td>").text(value.pnumber)
 			  	//.addClass("pnumber")
@@ -86,26 +107,71 @@ let loadList = function() {
 			  	.appendTo(tr);
 			  	//.css("width", "120px");
 			  $("<td>")
+			  //trPtitle
+			  	.addClass("ptitle")
 			  	.text(value.ptitle)
 			  	.appendTo(tr)
 			  	.on("click", function() {
+			  		if (openedCnumber.has(value.pnumber) == false) {
+				  		openedCnumber.add(value.pnumber);
+				  		
+				  		showPost(value);
+			  		} else {
+			  			openedCnumber.delete(value.pnumber);
+			  			
+			  			$(this).children().remove();
+			  		};
+			  		
+			  		
+			  		//console.log(openedCnumber);
 			  		
 			  		//console.log($( this ).text());
-			  		console.log(value.pnumber);
-			  		console.log(value.pcontent);
-			  		console.log(value.pimage);
+			  		//console.log(value.pnumber);
+			  		//console.log(value.pcontent);
+			  		//console.log(value.pimage);
 			  		
+			  		/*
 			  		$("<h1>").text(value.ptitle)
 		  				.appendTo($(this));
 			  		$("<img>").attr("src", value.pimage)
 			  			.css("max-width", "100%")
+			  			.on("error", function() {
+			  				$(this).remove();
+			  			})
 			  			.appendTo($(this));
 			  		$("<p>").text(value.pcontent)
 		  				.appendTo($(this));
+			  		*/
 			  		
 			  		
 			  		
 			  	});
+			  if (openedCnumber.has(value.pnumber)) {
+				  
+				  
+			  		//console.log(openedCnumber);
+			  		
+			  		//console.log($( this ).text());
+			  		//console.log(value.pnumber);
+			  		//console.log(value.pcontent);
+			  		//console.log(value.pimage);
+			  		
+			  		/*)
+			  		$("<h1>").text(value.ptitle)
+		  				.appendTo($(trPtitle));
+			  		$("<img>").attr("src", value.pimage)
+			  			.css("max-width", "100%")
+			  			.on("error", function() {
+			  				$(this).remove();
+			  			})
+			  			.appendTo($(trPtitle));
+			  		$("<p>").text(value.pcontent)
+		  				.appendTo($(trPtitle));				  
+				  	*/
+				  	
+			  		showPost(value);
+			  		
+			  };
 			  	//.css("width", "600px");
 			  $("<td>").text(value.pdate)
 			  	.appendTo(tr);
