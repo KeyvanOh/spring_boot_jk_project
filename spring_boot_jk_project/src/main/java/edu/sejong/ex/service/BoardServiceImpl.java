@@ -18,7 +18,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<BoardVO> getList() {
-		System.out.println("getList()..");
+		//System.out.println("getList()..");
 		log.info("getList()..log..");
 
 		return boardMapper.selectList();

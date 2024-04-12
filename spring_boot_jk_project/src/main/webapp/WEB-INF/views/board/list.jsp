@@ -33,10 +33,14 @@
 
 <script>
 
-
+let sceneNumber = 0;
 
 
 let header = $("header");
+
+
+
+
 
 let loadList = function() {
 	$(".container").remove();
@@ -75,13 +79,33 @@ let loadList = function() {
 			  tr.addClass("table-row")
 			  	.appendTo(table);
 			  $("<td>").text(value.pnumber)
+			  	//.addClass("pnumber")
 			  	.appendTo(tr);
 			  	//.css("width", "60px");
 			  $("<td>").text(value.pid)
 			  	.appendTo(tr);
 			  	//.css("width", "120px");
-			  $("<td>").text(value.ptitle)
-			  	.appendTo(tr);
+			  $("<td>")
+			  	.text(value.ptitle)
+			  	.appendTo(tr)
+			  	.on("click", function() {
+			  		
+			  		//console.log($( this ).text());
+			  		console.log(value.pnumber);
+			  		console.log(value.pcontent);
+			  		console.log(value.pimage);
+			  		
+			  		$("<h1>").text(value.ptitle)
+		  				.appendTo($(this));
+			  		$("<img>").attr("src", value.pimage)
+			  			.css("max-width", "100%")
+			  			.appendTo($(this));
+			  		$("<p>").text(value.pcontent)
+		  				.appendTo($(this));
+			  		
+			  		
+			  		
+			  	});
 			  	//.css("width", "600px");
 			  $("<td>").text(value.pdate)
 			  	.appendTo(tr);
@@ -113,9 +137,15 @@ loadList();
 	
 setInterval( 
 	function() {
-		loadList()
-	
-	}, 1000);
+		switch(sceneNumber) {
+			case 0: {
+				loadList();
+				break;
+			}
+			default: {
+			}
+		}				
+}, 10000);
 	
 
 
