@@ -71,11 +71,12 @@ let loadList = function() {
 	let container = $("<div>");
 	//$(".table-row").remove();
 	container.addClass("container text-center")
+		//.css("margin", "1rem")
 		.appendTo(header);
 	let table = $("<table>")
 		.addClass("table")
 		.attr("border", "1")
-		.css("margin-bottom", "0")
+		//.css("margin-bottom", "0")
 		.appendTo(container);
 	let trColumn = $("<tr>");
 	trColumn.appendTo(table);
@@ -117,11 +118,13 @@ let loadList = function() {
 				  		openedCnumber.add(value.pnumber);
 				  		
 				  		showPost(value);
+				  		$(this).text("x");
 			  		} else {
 			  			openedCnumber.delete(value.pnumber);
 			  			
 			  			//$(this).children().remove();
 			  			$(this).parent().children("div").remove();
+			  			$(this).text(value.ptitle);
 			  		};
 			  	});
 			  $("<td>")
@@ -145,6 +148,7 @@ let loadList = function() {
 			  	});
 			  	*/
 			  if (openedCnumber.has(value.pnumber)) {
+				  	pPtitle.text("x")
 			  		showPost(value);
 			  };
 			  $("<td>").text(value.pdate)
@@ -183,7 +187,7 @@ setInterval(
 			}
 		};
 	}, 
-	1000000
+	10000
 );
 	
 
