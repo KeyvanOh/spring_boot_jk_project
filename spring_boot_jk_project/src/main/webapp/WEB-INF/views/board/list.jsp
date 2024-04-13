@@ -87,6 +87,10 @@ let addLoginModal =  function() {
 		.appendTo($("#container"))
 		//.css("position", "absolute")
 		.css("position", "fixed")
+		//.css("left", "50vw")
+		//.css("left", document.documentElement.clientWidth / 2)
+		.css("left", document.documentElement.clientWidth / 2 - 250 + "px")
+		//.css("left", "50vw - 250px")
 		.css("top", "2rem")
 		.css("width", "500px")
 		.css("height", "600px")
@@ -321,7 +325,13 @@ setInterval(
 	},
 	60000
 );
-
+setInterval( 
+	function() {
+		let loginModal = $("#loginModal");
+		loginModal.css("left", document.documentElement.clientWidth / 2 - 250 + "px");
+	},
+	100
+);
 
 
 
