@@ -97,6 +97,16 @@ let addLoginModal =  function() {
 		.css("background", "white")
 		.css("border", "1px solid black")
 		.css("display", "none");
+	
+	let closeButton = $("<span>");
+	closeButton.appendTo(divLogin)
+		.text("x")
+		.css("position", "absolute")
+		.css("right", "1rem")
+		.on("click", function() {
+			onOffLoginModal();
+		})
+		;
 };
 
 
@@ -121,6 +131,21 @@ let showPost = function(value) {
 		.appendTo(divPost);				
 };
 
+
+let onOffLoginModal = function() {
+	
+	console.log($(this).text());
+	
+	let loginModal = $("#loginModal");
+	let backgroundShadow = $("#backgroundShadow");
+	if (loginModal.css("display") == "none") {
+		loginModal.css("display", "block");
+		backgroundShadow.css("display", "block");
+	} else {
+		loginModal.css("display", "none");
+		backgroundShadow.css("display", "none");
+	};	
+}
 
 let loadList = function() {
 	//$(".container").remove();
@@ -147,23 +172,8 @@ let loadList = function() {
 		.css("position", "absolute")
 		.css("right", "0")
 		.on("click", function() {
-			//console.log($(this).text());
-			let loginModal = $("#loginModal");
-			let backgroundShadow = $("#backgroundShadow");
-			if (loginModal.css("display") == "none") {
-				loginModal.css("display", "block");
-				backgroundShadow.css("display", "block");
-			} else {
-				loginModal.css("display", "none");
-				backgroundShadow.css("display", "none");
-			};
-			
-			
-			
+			onOffLoginModal()
 		});
-	
-	
-	
 	
 	let table = $("<table>")
 		.addClass("table")
