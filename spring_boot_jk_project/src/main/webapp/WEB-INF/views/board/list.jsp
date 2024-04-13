@@ -70,6 +70,21 @@ let openedCnumber = new Set();
 let header = $("header");
 
 
+let addLoginModal =  function() {
+	let divLogin = $("<div>");
+	divLogin.attr("id", "loginModal")
+		.appendTo($("#container"))
+		.css("position", "absolute")
+		.css("top", "2rem")
+		.css("width", "500px")
+		.css("height", "600px")
+		.css("background", "white")
+		.css("border", "1px solid black")
+		.css("display", "none");
+};
+
+
+
 let showPost = function(value) {
 	let tdPtitle = $("#" + value.pnumber + " > .ptitle");
 	//console.log(tdPtitle);
@@ -96,6 +111,7 @@ let loadList = function() {
 	
 	let container = $("<div>");
 	container.addClass("container text-center")
+		.attr("id", "container")
 		.appendTo(header)
 		.css("position", "relative");
 	
@@ -115,7 +131,16 @@ let loadList = function() {
 		.css("position", "absolute")
 		.css("right", "0")
 		.on("click", function() {
-			console.log($(this).text());
+			//console.log($(this).text());
+			let loginModal = $("#loginModal");
+			if (loginModal.css("display") == "none") {
+				loginModal.css("display", "block");
+			} else {
+				loginModal.css("display", "none");
+			};
+			
+			
+			
 		});
 	
 	
@@ -226,6 +251,8 @@ let loadList = function() {
 		*/
 	});	
 	
+	
+	addLoginModal();
 
 };
 
