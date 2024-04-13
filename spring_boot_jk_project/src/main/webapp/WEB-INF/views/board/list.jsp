@@ -57,7 +57,7 @@ alert($.session.get("myVar"));
 
 //alert(sessionStorage.getItem('lastname'));
 
-sessionStorage.setItem('id','jk');
+//sessionStorage.setItem('id','jk');
 
 let sceneNumber = 0;
 //let sceneNumber = 1;
@@ -96,11 +96,38 @@ let loadList = function() {
 	
 	let container = $("<div>");
 	container.addClass("container text-center")
-		.appendTo(header);
+		.appendTo(header)
+		.css("position", "relative");
+	
+	let spanPost = $("<span>");
+	spanPost.text("글쓰기")
+		.appendTo(container)
+		.css("position", "absolute")
+		.css("left", "0")
+		.on("click", function() {
+			console.log($(this).text());
+		});
+
+	
+	let spanLogin = $("<span>");
+	spanLogin.text("로그인")
+		.appendTo(container)
+		.css("position", "absolute")
+		.css("right", "0")
+		.on("click", function() {
+			console.log($(this).text());
+		});
+	
+	
+	
+	
 	let table = $("<table>")
 		.addClass("table")
 		.attr("border", "1")
-		.appendTo(container);
+		.appendTo(container)
+		.css("position", "absolute")
+		.css("left", "0")
+		.css("top", "2rem");
 	let trColumn = $("<tr>");
 	trColumn.appendTo(table);
 	
@@ -185,7 +212,7 @@ let loadList = function() {
 				  return false;
 			  };
 		});
-		
+		/*
 		let writeButton = $("<span>");
 		writeButton.text("글쓰기")
 			.appendTo(container)
@@ -195,7 +222,8 @@ let loadList = function() {
 				showScene(sceneNumber);	
 			});
 			//.css("position", "fixed")
-			//.css("top", "600px");			
+			//.css("top", "600px");		
+		*/
 	});	
 	
 
@@ -226,7 +254,7 @@ let showScene = function(sn) {
 			
 		}
 	};
-	console.log(sessionStorage.getItem("id"));
+	//console.log(sessionStorage.getItem("id"));
 };
 
 
@@ -249,7 +277,7 @@ setInterval(
 	function() {
 		showScene(sceneNumber)
 	},
-	1000
+	60000
 );
 
 
