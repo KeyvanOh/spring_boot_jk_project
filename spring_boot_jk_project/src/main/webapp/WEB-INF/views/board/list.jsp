@@ -71,10 +71,22 @@ let header = $("header");
 
 
 let addLoginModal =  function() {
+	let backgroundShadow = $("<div>");
+	backgroundShadow.attr("id", "backgroundShadow")
+		.appendTo($("#container"))
+		.css("position", "fixed")
+		.css("left", "0")
+		.css("top", "0")
+		.css("width", "100vw")
+		.css("height", "100vh")
+		.css("background", "red")
+		.css("opacity", "0.5")
+		.css("display", "none");
 	let divLogin = $("<div>");
 	divLogin.attr("id", "loginModal")
 		.appendTo($("#container"))
-		.css("position", "absolute")
+		//.css("position", "absolute")
+		.css("position", "fixed")
 		.css("top", "2rem")
 		.css("width", "500px")
 		.css("height", "600px")
@@ -133,10 +145,13 @@ let loadList = function() {
 		.on("click", function() {
 			//console.log($(this).text());
 			let loginModal = $("#loginModal");
+			let backgroundShadow = $("#backgroundShadow");
 			if (loginModal.css("display") == "none") {
 				loginModal.css("display", "block");
+				backgroundShadow.css("display", "block");
 			} else {
 				loginModal.css("display", "none");
+				backgroundShadow.css("display", "none");
 			};
 			
 			
