@@ -93,7 +93,8 @@ let addLoginModal =  function() {
 		//.css("left", "50vw - 250px")
 		.css("top", "2rem")
 		.css("width", "500px")
-		.css("height", "600px")
+		//.css("height", "600px")
+		.css("height", "285px")
 		.css("background", "white")
 		.css("border", "1px solid black")
 		.css("display", "none");
@@ -107,6 +108,69 @@ let addLoginModal =  function() {
 			onOffLoginModal();
 		})
 		;
+	
+	let titleLogin = $("<h1>");
+	titleLogin.text("로그인")
+		.appendTo(divLogin)
+		.css("position", "absolute")
+		.css("left", "12rem")
+		.css("top", "1rem");
+	
+	let divID = $("<div>")
+		.appendTo(divLogin)
+		.css("position", "absolute")
+		.css("top", "6rem");
+	$("<span>ID</span>").appendTo(divID)
+		.css("position", "absolute")
+		.css("left", "8rem");
+	let inputId = $("<input>");
+	inputId.attr("type", "text")
+		.appendTo(divID)
+		.css("position", "absolute")
+		.css("left", "10rem");
+	
+	
+	
+	
+	let divPw = $("<div>")
+		.appendTo(divLogin)
+		.css("position", "absolute")
+		.css("top", "9rem");
+	$("<span>PW</span>").appendTo(divPw)
+		.css("position", "absolute")
+		.css("left", "8rem");
+	
+	
+	let inputPw = $("<input>");
+	inputPw.attr("type", "password")
+		.appendTo(divPw)
+		.css("position", "absolute")
+		.css("left", "10rem");
+	
+	
+	let spanLoginButton = $("<span>");
+	spanLoginButton.text("로그인")
+		.appendTo(divLogin)
+		.css("position", "absolute")
+		.css("top", "13rem")
+		.css("left", "14.5rem")
+		;
+	
+	let spanRegisterButton = $("<span>");
+	spanRegisterButton.text("회원가입")
+		.appendTo(divLogin)
+		.css("position", "absolute")
+		.css("top", "15rem")
+		.css("left", "14rem")
+		;
+	
+	
+	
+	
+	
+	
+		
+	
 };
 
 
