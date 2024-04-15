@@ -71,12 +71,12 @@ let openedCnumber = new Set();
 //console.log(openedCnumber);
 
 
-let header = $("header");
+//let header = $("header");
 
 
 
 
-let addLoginModal =  function() {
+let addLoginModal = function() {
 	let backgroundShadow = $("<div>");
 	backgroundShadow.attr("id", "backgroundShadow")
 		.appendTo($("#container"))
@@ -116,7 +116,7 @@ let addLoginModal =  function() {
 		.on("click", function() {
 			onOffLoginModal();
 		})
-		;
+	;
 	
 	let titleLogin = $("<h1>");
 	titleLogin.attr("id", "titleLogin")
@@ -271,6 +271,7 @@ let addLoginModal =  function() {
 						
 						//$("#spanLogin").text(sessionStorage.getItem('buid'));
 						$("#spanLogin").css("display", "none");
+						$("#spanLogout").css("display", "block");
 						
 						onOffLoginModal();
 						
@@ -279,12 +280,9 @@ let addLoginModal =  function() {
 					};
 					
 					
-					
-					
-					
-					
 				} else {
 					//$("#inputId").css("background", "green");
+					
 				};				
 				
 				
@@ -462,16 +460,27 @@ let loadList = function() {
 	let container = $("<div>");
 	container.addClass("container text-center")
 		.attr("id", "container")
-		.appendTo(header)
+		//.appendTo(header)
+		.appendTo($("header"))
 		.css("position", "relative");
 	
-	let spanPost = $("<span>");
-	spanPost.text("글쓰기")
+	let spanPost = $("<span>")
+		.attr("id", "spanPost")
+		.text("글쓰기")
 		.appendTo(container)
 		.css("position", "absolute")
 		.css("left", "0")
 		.on("click", function() {
-			console.log($(this).text());
+			//console.log($(this).text());
+			
+			if (sessionStorage.getItem('buid') == null) {
+				onOffLoginModal();
+			} else {
+				//console.log($(this).text());
+				
+				onOffPostModal();
+			};
+			
 		});
 
 	
@@ -496,13 +505,15 @@ let loadList = function() {
 		.on("click", function() {
 			//onOffLoginModal()
 			console.log("logout button");
-			sessionStorage.removeItem('buid');
+			//sessionStorage.removeItem('buid');
+			sessionStorage.clear();
 			$("#spanLogout").css("display", "none");
 			$("#spanLogin").css("display", "block");
 		})
 	;
 	
-	if (sessionStorage.getItem('buid') == "") {
+	//if (sessionStorage.getItem('buid') == "") {
+	if (sessionStorage.getItem('buid') == null) {
 		$("#spanLogin").css("display", "block");
 	} else {
 		$("#spanLogout").css("display", "block");
@@ -633,7 +644,8 @@ let showScene = function(sn) {
 			let container = $("<div>");
 			container.addClass("container text-center border")
 				.text("eswgewg")
-				.appendTo(header);
+				//.appendTo(header);
+				.appendTo($("header"));
 			
 			
 			

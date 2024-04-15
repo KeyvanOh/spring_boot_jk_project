@@ -69,6 +69,13 @@ let postIdCheck = function() {
 };
 
 
+let onOffPostModal = function() {
+	
+	console.log("updated???");
+	
+};
+
+
 
 
 
