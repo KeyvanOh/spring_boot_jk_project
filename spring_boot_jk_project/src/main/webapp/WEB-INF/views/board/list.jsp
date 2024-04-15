@@ -61,6 +61,8 @@ alert($.session.get("myVar"));
 
 //sessionStorage.setItem('id','jk');
 
+console.log(sessionStorage.getItem('buid'));
+
 let sceneNumber = 0;
 //let sceneNumber = 1;
 
@@ -101,7 +103,10 @@ let addLoginModal =  function() {
 		.css("height", "285px")
 		.css("background", "white")
 		.css("border", "1px solid black")
-		.css("display", "none");
+		.css("display", "none")
+		.on("keyup", function() {
+			fnCheckAllGreen();
+		});	
 	
 	let closeButton = $("<span>");
 	closeButton.appendTo(divLogin)
@@ -253,11 +258,28 @@ let addLoginModal =  function() {
 					//console.log(listFromTheId[0]);
 					//console.log(listFromTheId[0].bupw);
 					
+					
+					
 					if (listFromTheId[0].bupw == $("#inputPw").val()) {
 						console.log("Go LOGIN.");
+						
+						//sessionStorage.setItem('buid', $("#inputPw").val());
+						sessionStorage.setItem('buid', $("#inputId").val());
+						
+						
+						console.log("session buid : " + sessionStorage.getItem('buid'));
+						
+						//$("#spanLogin").text(sessionStorage.getItem('buid'));
+						$("#spanLogin").css("display", "none");
+						
+						onOffLoginModal();
+						
 					} else {
 						console.log("Wrong PW.");
 					};
+					
+					
+					
 					
 					
 					
@@ -398,24 +420,8 @@ let onOffLoginModal = function() {
 	
 	//console.log($(this).text());
 	
-	let loginModal = $("#loginModal")
-		.on("keyup", function() {
-			/*
-			console.log($("#inputId").css("background"));
-			console.log($("#inputPw").css("background"));
-			console.log($("#inputPw2").css("background"));
-			if (
-				$("#inputId").css("background") == "rgb(0, 128, 0)" &&
-				$("#inputPw").css("background") == "rgb(0, 128, 0)" &&
-				$("#inputPw2").css("background") == "rgb(0, 128, 0)"
-			) {
-				fnInputAllGreen();
-			} else {
-				xfnInputAllGreen();
-			};
-			*/
-			fnCheckAllGreen();
-		});
+	let loginModal = $("#loginModal");
+
 	let backgroundShadow = $("#backgroundShadow");
 	if (loginModal.css("display") == "none") {
 		loginModal.css("display", "block");
@@ -469,14 +475,35 @@ let loadList = function() {
 		});
 
 	
-	let spanLogin = $("<span>");
-	spanLogin.text("로그인")
+	let spanLogin = $("<span>")
+		.attr("id", "spanLogin")
+		.text("로그인")
 		.appendTo(container)
 		.css("position", "absolute")
 		.css("right", "0")
+		.css("display", "none")
 		.on("click", function() {
 			onOffLoginModal()
 		});
+		
+	let spanLogout = $("<span>")
+		.attr("id", "spanLogout")
+		.text("로그아웃")
+		.appendTo(container)
+		.css("position", "absolute")
+		.css("right", "0")
+		.css("display", "none")
+		.on("click", function() {
+			//onOffLoginModal()
+			console.log("logout button");
+		});
+	
+	if (sessionStorage.getItem('buid') == "") {
+		$("#spanLogin").css("display", "block");
+	} else {
+		$("#spanLogout").css("display", "block");
+	};
+	
 	
 	let table = $("<table>")
 		.addClass("table")
