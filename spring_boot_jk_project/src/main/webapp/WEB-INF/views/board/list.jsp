@@ -69,6 +69,13 @@ let openedCnumber = new Set();
 
 let header = $("header");
 
+let fnInputAllGreen = function() {
+	$("#spanRegisterButton").css("color", "yellow");
+};
+let xfnInputAllGreen = function() {
+	$("#spanRegisterButton").css("color", "black");
+};
+
 
 let addLoginModal =  function() {
 	let backgroundShadow = $("<div>");
@@ -231,8 +238,9 @@ let addLoginModal =  function() {
 		});	
 	
 	
-	let spanRegisterButton = $("<span>");
-	spanRegisterButton.text("회원가입")
+	let spanRegisterButton = $("<span>")
+		.attr("id", "spanRegisterButton")
+		.text("회원가입")
 		.appendTo(divLogin)
 		.css("position", "absolute")
 		.css("top", "15rem")
@@ -276,6 +284,9 @@ let addLoginModal =  function() {
 				.val("");
 			
 			
+			//$("#spanRegisterButton").css("color", "black");
+			xfnInputAllGreen();
+			
 		})
 		;
 	
@@ -313,9 +324,31 @@ let showPost = function(value) {
 
 let onOffLoginModal = function() {
 	
-	console.log($(this).text());
+	//console.log($(this).text());
 	
-	let loginModal = $("#loginModal");
+	let loginModal = $("#loginModal")
+		.on("keyup", function() {
+			
+			//console.log("aaa");
+			
+			//console.log($("#inputId").css("background"));
+			
+			//if ($("#inputId").css("background") == "green") {
+			if (
+				$("#inputId").css("background") == "rgb(0, 128, 0)" &&
+				$("#inputPw").css("background") == "rgb(0, 128, 0)" &&
+				$("#inputPw2").css("background") == "rgb(0, 128, 0)"
+			) {
+				//console.log("All green");
+				//$("#spanRegisterButton").css("color", "yellow");
+				fnInputAllGreen();
+				
+			} else {
+				//$("#spanRegisterButton").css("color", "black");
+				xfnInputAllGreen();
+			};
+			
+		});
 	let backgroundShadow = $("#backgroundShadow");
 	if (loginModal.css("display") == "none") {
 		loginModal.css("display", "block");
@@ -339,6 +372,9 @@ let onOffLoginModal = function() {
 		$("#inputPw2").css("background", "none")
 			.val("");
 		
+		
+		//$("#spanRegisterButton").css("color", "black");
+		xfnInputAllGreen();
 		
 		
 	} else {
