@@ -16,6 +16,11 @@ PLIKE             NUMBER(5)
         	select * from board order by pnumber desc
         ]]>
     </select>
+    <select id="selectListWithBuid" resultType="edu.sejong.ex.vo.BuserVO">
+        <![CDATA[
+        	select * from buser where buid = #{buid}
+        ]]>
+    </select>
 
     
 </mapper>

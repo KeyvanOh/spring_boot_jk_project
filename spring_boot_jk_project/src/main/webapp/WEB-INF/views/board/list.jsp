@@ -110,7 +110,8 @@ let addLoginModal =  function() {
 		;
 	
 	let titleLogin = $("<h1>");
-	titleLogin.text("로그인")
+	titleLogin.attr("id", "titleLogin")
+		.text("로그인")
 		.appendTo(divLogin)
 		.css("position", "absolute")
 		.css("left", "12rem")
@@ -122,12 +123,57 @@ let addLoginModal =  function() {
 		.css("top", "6rem");
 	$("<span>ID</span>").appendTo(divID)
 		.css("position", "absolute")
-		.css("left", "8rem");
-	let inputId = $("<input>");
-	inputId.attr("type", "text")
+		.css("left", "8.5rem");
+	let inputId = $("<input>")
+		.attr("id", "inputId")
+		.attr("type", "text")
 		.appendTo(divID)
 		.css("position", "absolute")
-		.css("left", "10rem");
+		.css("left", "10rem")
+		.on("keyup", function() {
+			
+			//console.log($(this).text());
+			//console.log($(this).val());
+			
+			if ($(this).val() != "") {
+				
+				$.post("/board/ajax_list_with_buid", {
+					'buid': $(this).val()
+				},
+				function(board, status) {
+					//console.log(board);
+					//console.log(board.length);
+					//console.log(board.length());
+					//console.log(board[0].buid);
+					
+					if (board.length > 0) {
+						
+						$("#inputId").css("background", "red");
+						
+						
+						//console.log("Aleady registered.");
+						
+						//console.log($(this));
+						//console.log($(this).parent().val());
+					} else {
+						$("#inputId").css("background", "green");
+					};
+					
+				});				
+				
+			} else {
+				
+				$("#inputId").css("background", "none");
+				
+			};
+			
+
+			
+			
+			
+			
+			
+		});
 	
 	
 	
@@ -139,8 +185,6 @@ let addLoginModal =  function() {
 	$("<span>PW</span>").appendTo(divPw)
 		.css("position", "absolute")
 		.css("left", "8rem");
-	
-	
 	let inputPw = $("<input>");
 	inputPw.attr("type", "password")
 		.appendTo(divPw)
@@ -148,13 +192,32 @@ let addLoginModal =  function() {
 		.css("left", "10rem");
 	
 	
-	let spanLoginButton = $("<span>");
-	spanLoginButton.text("로그인")
+	let spanLoginButton = $("<span>")
+		.attr("id", "spanLoginButton")
+		.text("로그인")
 		.appendTo(divLogin)
 		.css("position", "absolute")
 		.css("top", "13rem")
 		.css("left", "14.5rem")
 		;
+	
+	let divPw2 = $("<div>")
+		.attr("id", "divPw2")
+		.appendTo(divLogin)
+		.css("position", "absolute")
+		.css("top", "12rem")
+		.css("display", "none");
+	let spanPw2 = $("<span>PW2</span>")
+	//spanPw2.attr("id", "spanPw2")
+		.appendTo(divPw2)
+		.css("position", "absolute")
+		.css("left", "7.5rem");
+	let inputPw2 = $("<input>");
+	inputPw2.attr("type", "password")
+		.appendTo(divPw2)
+		.css("position", "absolute")
+		.css("left", "10rem");			
+	
 	
 	let spanRegisterButton = $("<span>");
 	spanRegisterButton.text("회원가입")
@@ -162,6 +225,40 @@ let addLoginModal =  function() {
 		.css("position", "absolute")
 		.css("top", "15rem")
 		.css("left", "14rem")
+		.on("click", function() {
+			//console.log($(this).parent().children().remove());
+			//$(this).parent().children().remove();
+			//let $(this).parent();
+			//titleLogin.text("회원가입")
+			$("#titleLogin").text("회원가입")
+				.css("left", "11rem");
+			//spanLoginButton.css("display", "none");
+			$("#spanLoginButton").css("display", "none");
+			
+			$("#divPw2").css("display", "block");
+			
+			/*
+			let divPw2 = $("<div>")
+				.attr("id", "divPw2")
+				.appendTo(divLogin)
+				.css("position", "absolute")
+				.css("top", "12rem");
+			let spanPw2 = $("<span>PW2</span>");
+			//spanPw2.attr("id", "spanPw2")
+				.appendTo(divPw2)
+				.css("position", "absolute")
+				.css("left", "7.5rem");
+			let inputPw2 = $("<input>");
+			inputPw2.attr("type", "password")
+				.appendTo(divPw2)
+				.css("position", "absolute")
+				.css("left", "10rem");			
+			*/
+			
+			
+			
+			
+		})
 		;
 	
 	
@@ -205,6 +302,20 @@ let onOffLoginModal = function() {
 	if (loginModal.css("display") == "none") {
 		loginModal.css("display", "block");
 		backgroundShadow.css("display", "block");
+		
+		/*
+		$("#titleLogin").text("로그인")
+			.css("left", "12rem");
+		$("#spanPw2").display(none);
+		*/
+		
+		$("#titleLogin").text("로그인")
+			.css("left", "12rem");
+		$("#spanLoginButton").css("display", "block");
+		$("#divPw2").css("display", "none");
+		
+		
+		
 	} else {
 		loginModal.css("display", "none");
 		backgroundShadow.css("display", "none");
