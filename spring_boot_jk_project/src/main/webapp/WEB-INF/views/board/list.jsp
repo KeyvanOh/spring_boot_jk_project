@@ -135,37 +135,45 @@ let addLoginModal =  function() {
 			//console.log($(this).text());
 			//console.log($(this).val());
 			
-			if ($(this).val() != "") {
-				
-				$.post("/board/ajax_list_with_buid", {
-					'buid': $(this).val()
-				},
-				function(board, status) {
-					//console.log(board);
-					//console.log(board.length);
-					//console.log(board.length());
-					//console.log(board[0].buid);
-					
-					if (board.length > 0) {
-						
-						$("#inputId").css("background", "red");
-						
-						
-						//console.log("Aleady registered.");
-						
-						//console.log($(this));
-						//console.log($(this).parent().val());
-					} else {
-						$("#inputId").css("background", "green");
-					};
-					
-				});				
+			if ($("#divPw2").css("display") == "none") {
 				
 			} else {
 				
-				$("#inputId").css("background", "none");
+				if ($(this).val() != "") {
+					
+					$.post("/board/ajax_list_with_buid", {
+						'buid': $(this).val()
+					},
+					function(board, status) {
+						//console.log(board);
+						//console.log(board.length);
+						//console.log(board.length());
+						//console.log(board[0].buid);
+						
+						if (board.length > 0) {
+							
+							$("#inputId").css("background", "red");
+							
+							
+							//console.log("Aleady registered.");
+							
+							//console.log($(this));
+							//console.log($(this).parent().val());
+						} else {
+							$("#inputId").css("background", "green");
+						};
+						
+					});				
+					
+				} else {
+					
+					$("#inputId").css("background", "none");
+					
+				};				
 				
 			};
+			
+
 			
 
 			
@@ -255,7 +263,8 @@ let addLoginModal =  function() {
 				.css("left", "10rem");			
 			*/
 			
-			
+			$("#inputId").css("background", "none")
+			.val("");
 			
 			
 		})
@@ -314,7 +323,8 @@ let onOffLoginModal = function() {
 		$("#spanLoginButton").css("display", "block");
 		$("#divPw2").css("display", "none");
 		
-		
+		$("#inputId").css("background", "none")
+			.val("");
 		
 	} else {
 		loginModal.css("display", "none");
