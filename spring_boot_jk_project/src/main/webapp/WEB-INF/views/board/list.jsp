@@ -496,7 +496,11 @@ let loadList = function() {
 		.on("click", function() {
 			//onOffLoginModal()
 			console.log("logout button");
-		});
+			sessionStorage.removeItem('buid');
+			$("#spanLogout").css("display", "none");
+			$("#spanLogin").css("display", "block");
+		})
+	;
 	
 	if (sessionStorage.getItem('buid') == "") {
 		$("#spanLogin").css("display", "block");
