@@ -67,12 +67,14 @@ let postIdCheck = function() {
 	});
 	return listFromTheId;
 };
-
-
 let onOffPostModal = function() {
-	
-	console.log("updated???");
-	
+	if ($("#postModal").css("display") == "none") {
+		$("#postModal").css("display", "block");
+		$("#backgroundShadow").css("display", "block");
+	} else {
+		$("#postModal").css("display", "none");
+		$("#backgroundShadow").css("display", "none");
+	};
 };
 
 
