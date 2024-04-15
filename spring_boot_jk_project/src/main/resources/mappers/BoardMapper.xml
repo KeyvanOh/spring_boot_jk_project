@@ -21,6 +21,14 @@ PLIKE             NUMBER(5)
         	select * from buser where buid = #{buid}
         ]]>
     </select>
+    <insert id="insertIntoBuser">
+        <![CDATA[
+			insert into buser values (
+			    #{buid},
+			    #{bupw}
+			)
+		]]>
+    </insert>
 
     
 </mapper>

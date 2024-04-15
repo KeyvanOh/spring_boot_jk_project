@@ -32,6 +32,8 @@
 
 </body>
 
+<script src="${pageContext.request.contextPath}/fns.js" ></script>
+
 <script>
 
 //$session.set("id", "cutiepie");
@@ -69,12 +71,7 @@ let openedCnumber = new Set();
 
 let header = $("header");
 
-let fnInputAllGreen = function() {
-	$("#spanRegisterButton").css("color", "yellow");
-};
-let xfnInputAllGreen = function() {
-	$("#spanRegisterButton").css("color", "black");
-};
+
 
 
 let addLoginModal =  function() {
@@ -246,46 +243,42 @@ let addLoginModal =  function() {
 		.css("top", "15rem")
 		.css("left", "14rem")
 		.on("click", function() {
-			//console.log($(this).parent().children().remove());
-			//$(this).parent().children().remove();
-			//let $(this).parent();
-			//titleLogin.text("회원가입")
-			$("#titleLogin").text("회원가입")
-				.css("left", "11rem");
-			//spanLoginButton.css("display", "none");
-			$("#spanLoginButton").css("display", "none");
+
 			
-			$("#divPw2").css("display", "block");
 			
-			/*
-			let divPw2 = $("<div>")
-				.attr("id", "divPw2")
-				.appendTo(divLogin)
-				.css("position", "absolute")
-				.css("top", "12rem");
-			let spanPw2 = $("<span>PW2</span>");
-			//spanPw2.attr("id", "spanPw2")
-				.appendTo(divPw2)
-				.css("position", "absolute")
-				.css("left", "7.5rem");
-			let inputPw2 = $("<input>");
-			inputPw2.attr("type", "password")
-				.appendTo(divPw2)
-				.css("position", "absolute")
-				.css("left", "10rem");			
-			*/
-			
-			$("#inputId").css("background", "none")
-			.val("");
-			
-			$("#inputPw").css("background", "none")
+			if ($("#spanRegisterButton").css("color") == "rgb(255, 255, 0)") {
+				xfnInputAllGreen();
+				
+				console.log("Go Register");
+				
+				postRegister();
+				
+				
+				
+				
+				
+				
+			} else {
+				
+				
+				$("#titleLogin").text("회원가입")
+					.css("left", "11rem");
+				$("#spanLoginButton").css("display", "none");
+				
+				$("#divPw2").css("display", "block");
+				
+				$("#inputId").css("background", "none")
 				.val("");
-			$("#inputPw2").css("background", "none")
-				.val("");
+				
+				$("#inputPw").css("background", "none")
+					.val("");
+				$("#inputPw2").css("background", "none")
+					.val("");				
+				
+				
+			};
 			
 			
-			//$("#spanRegisterButton").css("color", "black");
-			xfnInputAllGreen();
 			
 		})
 		;

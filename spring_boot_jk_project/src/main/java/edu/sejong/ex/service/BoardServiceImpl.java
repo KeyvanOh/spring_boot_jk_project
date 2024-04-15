@@ -32,4 +32,11 @@ public class BoardServiceImpl implements BoardService {
 		return boardMapper.selectListWithBuid(buid);
 	}
 
+	@Override
+	public void registerBuser(BuserVO vo) {
+		log.info("registerBuser()..log..");
+		
+		boardMapper.insertIntoBuser(vo);
+	}
+
 }

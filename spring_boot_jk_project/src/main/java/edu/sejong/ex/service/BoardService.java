@@ -11,4 +11,7 @@ public interface BoardService {
 
 	List<BuserVO> getListWithBuid(String buid);
 
+	void registerBuser(BuserVO vo);
+
+
 }

@@ -17,4 +17,6 @@ public interface BoardMapper {
 //	List<MgrVO> selectMgrList();
 //	List<Integer> selectDeptnosList();
 	List<BuserVO> selectListWithBuid(String buid);
+
+	void insertIntoBuser(BuserVO vo);
 }

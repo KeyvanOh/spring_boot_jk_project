@@ -32,4 +32,19 @@ public class BoardRestController {
 		log.info("ajaxListWithBuid()..");
 		return boardService.getListWithBuid(buid);
 	}
+	
+	@RequestMapping("/ajax_register")
+	public void ajaxRegister(
+			@RequestParam("buid") String buid,
+			@RequestParam("bupw") String bupw
+			) {
+		log.info("ajax_register()..");
+		BuserVO vo = new BuserVO(buid, bupw);
+		boardService.registerBuser(vo);
+	}
+	
+	
+	
+	
+	
 }
