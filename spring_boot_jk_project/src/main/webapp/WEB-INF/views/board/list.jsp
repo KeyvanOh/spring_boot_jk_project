@@ -138,20 +138,60 @@ let addLoginModal =  function() {
 			if ($("#divPw2").css("display") == "none") {
 			} else {
 				if ($(this).val() != "") {
+					
+					
+					/*
 					$.post("/board/ajax_list_with_buid", {
-						'buid': $(this).val()
+						//'buid': $(this).val()
+						'buid': $("#inputId").val()
 					},
+					//async(false),
 					function(board, status) {
 						if (board.length > 0) {
 							$("#inputId").css("background", "red");
 						} else {
 							$("#inputId").css("background", "green");
 						};
-					});				
+					});
+					*/
+					
+					/*
+					$.ajax({
+						type: "post",
+						url: "/board/ajax_list_with_buid",
+						data: 
+						{
+							'buid': $("#inputId").val()
+						},
+						async: false,
+						success: function(board, status) {
+							if (board.length > 0) {
+								$("#inputId").css("background", "red");
+							} else {
+								$("#inputId").css("background", "green");
+							};
+						},
+						//dataType: dataType
+					});
+					*/
+					
+					
+					//postIdCheck();
+					
+					let listFromTheId = postIdCheck();
+					//let listFromTheId = postIdCheck($("#inputId").val());
+					if (listFromTheId.length > 0) {
+						$("#inputId").css("background", "red");
+					} else {
+						$("#inputId").css("background", "green");
+					};
+					
+					
 				} else {
 					$("#inputId").css("background", "none");
 				};				
 			};
+			//fnCheckAllGreen();
 		});
 	
 	
@@ -187,6 +227,7 @@ let addLoginModal =  function() {
 					$("#inputPw2").css("background", "none");
 				};				
 			};
+			//fnCheckAllGreen();
 		});
 	
 	
@@ -197,7 +238,44 @@ let addLoginModal =  function() {
 		.css("position", "absolute")
 		.css("top", "13rem")
 		.css("left", "14.5rem")
-		;
+		.on("click", function() {
+			
+			if ($("#inputId").val() != "" && $("#inputPw").val() != "") {
+				
+				//console.log("Go LOGIN.");
+				
+				
+				
+				let listFromTheId = postIdCheck();
+				if (listFromTheId.length > 0) {
+					//$("#inputId").css("background", "red");
+					
+					//console.log(listFromTheId[0]);
+					//console.log(listFromTheId[0].bupw);
+					
+					if (listFromTheId[0].bupw == $("#inputPw").val()) {
+						console.log("Go LOGIN.");
+					} else {
+						console.log("Wrong PW.");
+					};
+					
+					
+					
+				} else {
+					//$("#inputId").css("background", "green");
+				};				
+				
+				
+				
+			};
+			
+			
+			
+			
+		})
+		
+		
+	;
 	
 	let divPw2 = $("<div>")
 		.attr("id", "divPw2")
@@ -232,6 +310,7 @@ let addLoginModal =  function() {
 					$("#inputPw2").css("background", "none");
 				};				
 			};
+			//fnCheckAllGreen();
 		});	
 	
 	
@@ -254,7 +333,7 @@ let addLoginModal =  function() {
 				postRegister();
 				
 				
-				
+				onOffLoginModal();
 				
 				
 				
@@ -321,26 +400,21 @@ let onOffLoginModal = function() {
 	
 	let loginModal = $("#loginModal")
 		.on("keyup", function() {
-			
-			//console.log("aaa");
-			
-			//console.log($("#inputId").css("background"));
-			
-			//if ($("#inputId").css("background") == "green") {
+			/*
+			console.log($("#inputId").css("background"));
+			console.log($("#inputPw").css("background"));
+			console.log($("#inputPw2").css("background"));
 			if (
 				$("#inputId").css("background") == "rgb(0, 128, 0)" &&
 				$("#inputPw").css("background") == "rgb(0, 128, 0)" &&
 				$("#inputPw2").css("background") == "rgb(0, 128, 0)"
 			) {
-				//console.log("All green");
-				//$("#spanRegisterButton").css("color", "yellow");
 				fnInputAllGreen();
-				
 			} else {
-				//$("#spanRegisterButton").css("color", "black");
 				xfnInputAllGreen();
 			};
-			
+			*/
+			fnCheckAllGreen();
 		});
 	let backgroundShadow = $("#backgroundShadow");
 	if (loginModal.css("display") == "none") {

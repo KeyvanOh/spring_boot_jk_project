@@ -5,7 +5,25 @@ let xfnInputAllGreen = function() {
 	$("#spanRegisterButton").css("color", "black");
 };
 
-console.log("here is test");
+let fnCheckAllGreen = function() {
+
+	//console.log($("#inputId").css("background"));
+	//console.log($("#inputPw").css("background"));
+	//console.log($("#inputPw2").css("background"));
+	if (
+		$("#inputId").css("background") == "rgb(0, 128, 0)" &&
+		$("#inputPw").css("background") == "rgb(0, 128, 0)" &&
+		$("#inputPw2").css("background") == "rgb(0, 128, 0)"
+	) {
+		fnInputAllGreen();
+	} else {
+		xfnInputAllGreen();
+	};
+			
+			
+			
+};
+
 
 
 let postRegister = function() {
@@ -14,8 +32,45 @@ let postRegister = function() {
 		'bupw': $("#inputPw2").val()
 	},
 	function(result, status) {
-		console.log("success?");
-		console.log(result);
-		console.log(status);
+		//console.log("success?");
+		//console.log(result);
+		//console.log(status);
 	});					
 };
+
+
+let postIdCheck = function() {
+//let postIdCheck = function(String buid) {
+	let listFromTheId = [];
+	$.ajax({
+		type: "post",
+		url: "/board/ajax_list_with_buid",
+		data: 
+		{
+			'buid': $("#inputId").val()
+			//'buid': buid
+		},
+		async: false,
+		success: function(board, status) {
+			
+			listFromTheId = board;
+			
+			/*
+			if (board.length > 0) {
+				$("#inputId").css("background", "red");
+			} else {
+				$("#inputId").css("background", "green");
+			};
+			*/
+			
+		},
+	});
+	return listFromTheId;
+};
+
+
+
+
+
+
+console.log("fns.js loaded.");
