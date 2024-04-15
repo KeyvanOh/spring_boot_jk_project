@@ -300,6 +300,42 @@ let buildPostModal = function() {
 		.css("top", "36.65rem")
 		//.css("left", "0")
 		.css("left", "14rem")
+		.on("click", function() {
+			
+			console.log("I am Post Button.");
+			
+			
+			/*
+			if ($("inputPtitle").text() != "") {
+			};
+			*/
+			
+			//console.log($("#inputPtitle").val());
+			//console.log($("#textareaPcontent").text());
+			//console.log($("#textareaPcontent").val());
+			//console.log($("#inputPimage").val());
+			
+			
+			if (
+				$("#inputPtitle").val() != "" &&
+				$("#textareaPcontent").val() != ""
+			) {
+				console.log($("#inputPtitle").val());
+				console.log($("#textareaPcontent").val());
+				console.log($("#inputPimage").val());
+			};
+			
+			
+			
+			
+			
+			
+			onOffPostModal();
+			$("#inputPtitle").val("");
+			$("#textareaPcontent").val("");
+			$("#inputPimage").val("");
+			
+		})
 	;
 	
 	
