@@ -131,73 +131,59 @@ let addLoginModal =  function() {
 		.css("position", "absolute")
 		.css("left", "10rem")
 		.on("keyup", function() {
-			
-			//console.log($(this).text());
-			//console.log($(this).val());
-			
 			if ($("#divPw2").css("display") == "none") {
-				
 			} else {
-				
 				if ($(this).val() != "") {
-					
 					$.post("/board/ajax_list_with_buid", {
 						'buid': $(this).val()
 					},
 					function(board, status) {
-						//console.log(board);
-						//console.log(board.length);
-						//console.log(board.length());
-						//console.log(board[0].buid);
-						
 						if (board.length > 0) {
-							
 							$("#inputId").css("background", "red");
-							
-							
-							//console.log("Aleady registered.");
-							
-							//console.log($(this));
-							//console.log($(this).parent().val());
 						} else {
 							$("#inputId").css("background", "green");
 						};
-						
 					});				
-					
 				} else {
-					
 					$("#inputId").css("background", "none");
-					
 				};				
-				
 			};
-			
-
-			
-
-			
-			
-			
-			
-			
 		});
 	
 	
 	
 	
 	let divPw = $("<div>")
+		.attr("id", "divPw")
 		.appendTo(divLogin)
 		.css("position", "absolute")
 		.css("top", "9rem");
 	$("<span>PW</span>").appendTo(divPw)
 		.css("position", "absolute")
 		.css("left", "8rem");
-	let inputPw = $("<input>");
-	inputPw.attr("type", "password")
+	let inputPw = $("<input>")
+		.attr("id", "inputPw")
+		.attr("type", "password")
 		.appendTo(divPw)
 		.css("position", "absolute")
-		.css("left", "10rem");
+		.css("left", "10rem")
+		.on("keyup", function() {
+			if ($("#divPw2").css("display") == "none") {
+			} else {
+				if ($(this).val() != "") {
+					if ($("#inputPw").val() == $("#inputPw2").val()) {
+						$("#inputPw").css("background", "green");
+						$("#inputPw2").css("background", "green");
+					} else {
+						$("#inputPw").css("background", "red");
+						$("#inputPw2").css("background", "red");
+					};
+				} else {
+					$("#inputPw").css("background", "none");
+					$("#inputPw2").css("background", "none");
+				};				
+			};
+		});
 	
 	
 	let spanLoginButton = $("<span>")
@@ -220,11 +206,29 @@ let addLoginModal =  function() {
 		.appendTo(divPw2)
 		.css("position", "absolute")
 		.css("left", "7.5rem");
-	let inputPw2 = $("<input>");
-	inputPw2.attr("type", "password")
+	let inputPw2 = $("<input>")
+		.attr("id", "inputPw2")
+		.attr("type", "password")
 		.appendTo(divPw2)
 		.css("position", "absolute")
-		.css("left", "10rem");			
+		.css("left", "10rem")
+		.on("keyup", function() {
+			if ($("#divPw2").css("display") == "none") {
+			} else {
+				if ($(this).val() != "") {
+					if ($("#inputPw").val() == $("#inputPw2").val()) {
+						$("#inputPw").css("background", "green");
+						$("#inputPw2").css("background", "green");
+					} else {
+						$("#inputPw").css("background", "red");
+						$("#inputPw2").css("background", "red");
+					};
+				} else {
+					$("#inputPw").css("background", "none");
+					$("#inputPw2").css("background", "none");
+				};				
+			};
+		});	
 	
 	
 	let spanRegisterButton = $("<span>");
@@ -265,6 +269,11 @@ let addLoginModal =  function() {
 			
 			$("#inputId").css("background", "none")
 			.val("");
+			
+			$("#inputPw").css("background", "none")
+				.val("");
+			$("#inputPw2").css("background", "none")
+				.val("");
 			
 			
 		})
@@ -325,6 +334,12 @@ let onOffLoginModal = function() {
 		
 		$("#inputId").css("background", "none")
 			.val("");
+		$("#inputPw").css("background", "none")
+			.val("");
+		$("#inputPw2").css("background", "none")
+			.val("");
+		
+		
 		
 	} else {
 		loginModal.css("display", "none");
