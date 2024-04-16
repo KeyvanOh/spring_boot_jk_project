@@ -40,7 +40,7 @@
 
 <script>
 
-console.log("wfgewge");
+console.log("wfgesdfwge");
 
 //buildPostModal();
 
@@ -370,6 +370,10 @@ let loadList = function() {
 					})
 				;
 				
+				if (i == page) {
+					$("#spanPage" + page).css("font-weight", "bold");
+				};
+				
 			};
 			
 		};
@@ -392,6 +396,11 @@ let loadList = function() {
 					showScene(sceneNumber)
 				})
 			;
+			
+			if (i == page) {
+				$("#spanPage" + page).css("font-weight", "bold");
+			};
+			
 		};
 	};
 	
