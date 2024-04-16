@@ -13,12 +13,17 @@ PLIKE             NUMBER(5)
 <mapper namespace="edu.sejong.ex.mapper.BoardMapper">
     <select id="selectList" resultType="edu.sejong.ex.vo.BoardVO">
         <![CDATA[
-        	select * from board order by pnumber desc
+        	select * from board where rownum <= 20 order by pnumber desc
         ]]>
     </select>
     <select id="selectListWithBuid" resultType="edu.sejong.ex.vo.BuserVO">
         <![CDATA[
         	select * from buser where buid = #{buid}
+        ]]>
+    </select>
+    <select id="selectCountOfBoard" resultType="int">
+        <![CDATA[
+        	select count(*) from board
         ]]>
     </select>
     <insert id="insertIntoBuser">
@@ -29,6 +34,25 @@ PLIKE             NUMBER(5)
 			)
 		]]>
     </insert>
+    <insert id="insertIntoBoard">
+        <![CDATA[
+			insert into board values (
+			    board_sequence.nextval,
+			    #{pid},
+			    #{ptitle},
+			    sysdate,
+			    #{pcontent},
+			    #{pimage},
+			    0,
+			    0
+			)
+		]]>
+    </insert>
+    
+    
+    
+    
+    
 
     
 </mapper>

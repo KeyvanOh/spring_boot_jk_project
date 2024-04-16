@@ -13,5 +13,9 @@ public interface BoardService {
 
 	void registerBuser(BuserVO vo);
 
+	void writePost(BoardVO vo);
+	
+	int getCountOfPosts();
+
 
 }

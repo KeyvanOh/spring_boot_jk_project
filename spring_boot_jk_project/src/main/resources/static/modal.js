@@ -302,7 +302,7 @@ let buildPostModal = function() {
 		.css("left", "14rem")
 		.on("click", function() {
 			
-			console.log("I am Post Button.");
+			//console.log("I am Post Button.");
 			
 			
 			/*
@@ -323,6 +323,14 @@ let buildPostModal = function() {
 				console.log($("#inputPtitle").val());
 				console.log($("#textareaPcontent").val());
 				console.log($("#inputPimage").val());
+				
+				
+				
+				//test123();
+				ajaxWrite();
+				
+				//onOffPostModal();
+				showScene(sceneNumber);
 			};
 			
 			
@@ -330,10 +338,10 @@ let buildPostModal = function() {
 			
 			
 			
-			onOffPostModal();
-			$("#inputPtitle").val("");
-			$("#textareaPcontent").val("");
-			$("#inputPimage").val("");
+			//onOffPostModal();
+			//$("#inputPtitle").val("");
+			//$("#textareaPcontent").val("");
+			//$("#inputPimage").val("");
 			
 		})
 	;

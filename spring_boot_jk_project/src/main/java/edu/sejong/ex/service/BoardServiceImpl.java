@@ -39,4 +39,18 @@ public class BoardServiceImpl implements BoardService {
 		boardMapper.insertIntoBuser(vo);
 	}
 
+	@Override
+	public void writePost(BoardVO vo) {
+		log.info("writePost()..log..");
+		
+		boardMapper.insertIntoBoard(vo);
+	}
+
+	@Override
+	public int getCountOfPosts() {
+		log.info("getCountOfPosts()..log..");
+		
+		return boardMapper.selectCountOfBoard();
+	}
+
 }

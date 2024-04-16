@@ -19,4 +19,8 @@ public interface BoardMapper {
 	List<BuserVO> selectListWithBuid(String buid);
 
 	void insertIntoBuser(BuserVO vo);
+
+	void insertIntoBoard(BoardVO vo);
+	
+	int selectCountOfBoard();
 }

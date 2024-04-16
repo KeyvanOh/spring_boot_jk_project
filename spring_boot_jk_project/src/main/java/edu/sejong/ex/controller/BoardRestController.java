@@ -24,27 +24,40 @@ public class BoardRestController {
 		log.info("ajaxList()..");
 		return boardService.getList();
 	}
-	
+
 	@RequestMapping("/ajax_list_with_buid")
-	public List<BuserVO> ajaxListWithBuid(
-			@RequestParam("buid") String buid
-	) {
+	public List<BuserVO> ajaxListWithBuid(@RequestParam("buid") String buid) {
 		log.info("ajaxListWithBuid()..");
 		return boardService.getListWithBuid(buid);
 	}
-	
+
 	@RequestMapping("/ajax_register")
-	public void ajaxRegister(
-			@RequestParam("buid") String buid,
-			@RequestParam("bupw") String bupw
-			) {
-		log.info("ajax_register()..");
+	public void ajaxRegister(@RequestParam("buid") String buid, @RequestParam("bupw") String bupw) {
+		log.info("ajaxRegister()..");
 		BuserVO vo = new BuserVO(buid, bupw);
 		boardService.registerBuser(vo);
 	}
+
+	/*
+	 * PNUMBER NOT NULL NUMBER(4) PID VARCHAR2(12) PTITLE VARCHAR2(30) PDATE DATE
+	 * PCONTENT VARCHAR2(3000) PIMAGE VARCHAR2(1000) PHIT NUMBER(5) PLIKE NUMBER(5)
+	 */
+
+	@RequestMapping("/ajax_posting")
+	public void ajaxPosting(@RequestParam("pid") String pid, @RequestParam("ptitle") String ptitle,
+			@RequestParam("pcontent") String pcontent, @RequestParam("pimage") String pimage) {
+		log.info("ajaxPosting()..");
+		// BuserVO vo = new BuserVO(buid, bupw);
+		BoardVO vo = new BoardVO(0, pid, ptitle, null, pcontent, pimage, 0, 0);
+		// boardService.registerBuser(vo);
+		boardService.writePost(vo);
+	}
 	
+	@RequestMapping("/ajax_posts_size")
+	public int ajaxPostsSize() {
+		log.info("ajaxPostsSize()..");
+		return boardService.getCountOfPosts();
+	}
 	
-	
-	
-	
+
 }

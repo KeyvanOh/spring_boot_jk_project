@@ -36,9 +36,11 @@
 
 <script src="${pageContext.request.contextPath}/modal.js" ></script>
 
+<script src="${pageContext.request.contextPath}/sqlquery.js" ></script>
+
 <script>
 
-console.log("etwfessedgsegf");
+console.log("wfe");
 
 //buildPostModal();
 
@@ -314,6 +316,37 @@ let loadList = function() {
 	
 	addLoginModal();
 	buildPostModal();
+	
+	
+	ajaxGetPostsSize();
+	
+	
+	$("<div>").appendTo("#container")
+		.attr("id", "divPages")
+		.css("position", "absolute")
+		.css("top", "620px")
+	;
+	
+	for (let i = 1; i <= 20; i++) {
+		
+		$("<span>").appendTo($("#divPages"))
+			.attr("id", "spanPage" + i)
+			.text(i)
+			.css("position", "absolute")
+			//.css("left", "0")
+			.css("left", i * 60 + "px")
+			.on("click", function() {
+				
+				console.log(i * 20);
+			})
+		;
+		
+	};
+	
+	
+	
+	
+	
 
 };
 
