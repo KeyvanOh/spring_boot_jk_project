@@ -40,7 +40,7 @@
 
 <script>
 
-console.log("wfgesdfwge");
+console.log("wge");
 
 //buildPostModal();
 
@@ -88,22 +88,28 @@ let openedCnumber = new Set();
 
 let showPost = function(value) {
 	let tdPtitle = $("#" + value.pnumber + " > .ptitle");
-	//console.log(tdPtitle);
 	let divPost = $("<div>");
 	divPost.appendTo(tdPtitle);
 	$("<h1>").text(value.ptitle)
-		//.appendTo(tdPtitle);
 		.appendTo(divPost);
 	$("<img>").attr("src", value.pimage)
 		.css("max-width", "100%")
 		.on("error", function() {
 			$(this).remove();
 		})
-		//.appendTo(tdPtitle);
 		.appendTo(divPost);
 	$("<p>").text(value.pcontent)
-		//.appendTo(tdPtitle);				
-		.appendTo(divPost);				
+		.appendTo(divPost);
+		
+	$("<p>").text("v")
+		.appendTo(divPost)
+		.css("margin-bottom", "0")
+		.css("margin-top", "1rem")
+		.on("click", function() {
+			console.log("comment here.");
+		})
+		//.css("border-top", "1px solid yellow")
+	;
 };
 
 
@@ -244,33 +250,37 @@ let loadList = function() {
 	function(board, status) {
 		//console.log(board);
 		$.each(board, function( index, value ) {
-			  let tr = $("<tr>");
-			  tr
-			  	.attr("id", value.pnumber)
-			  	.appendTo(table);
-			  $("<td>").text(value.pnumber)
-			  	//.addClass("pnumber")
-			  	.appendTo(tr);
-			  $("<td>").text(value.pid)
-			  	.appendTo(tr);
-			  let pPtitle = $("<p>");
-			  pPtitle.text(value.ptitle)
-			  	.css("padding", "0px")
-			  	.css("margin", "0px")
-			  	.on("click", function() {
-			  		if (openedCnumber.has(value.pnumber) == false) {
-				  		openedCnumber.add(value.pnumber);
-				  		
-				  		showPost(value);
-				  		$(this).text("x");
-			  		} else {
-			  			openedCnumber.delete(value.pnumber);
-			  			
-			  			//$(this).children().remove();
-			  			$(this).parent().children("div").remove();
-			  			$(this).text(value.ptitle);
-			  		};
-			  	});
+			let tr = $("<tr>");
+			tr
+				.attr("id", value.pnumber)
+				.appendTo(table);
+			$("<td>").text(value.pnumber)
+				//.addClass("pnumber")
+				.appendTo(tr);
+			$("<td>").text(value.pid)
+				.appendTo(tr);
+			let pPtitle = $("<p>");
+			pPtitle.text(value.ptitle)
+				.css("padding", "0px")
+				.css("margin", "0px")
+				.on("click", function() {
+					if (openedCnumber.has(value.pnumber) == false) {
+						openedCnumber.add(value.pnumber);
+						
+						showPost(value);
+						$(this).text("x");
+					} else {
+						openedCnumber.delete(value.pnumber);
+						
+						//$(this).children().remove();
+						$(this).parent().children("div").remove();
+						$(this).text(value.ptitle);
+					};
+				})
+			;
+			
+			
+			
 			  $("<td>")
 			  	.addClass("ptitle")
 			  	//.text(value.ptitle)
@@ -302,9 +312,9 @@ let loadList = function() {
 			  $("<td>").text(value.plike)
 			  	.appendTo(tr);
 			  tr.children().addClass("border-top");
-			  if (index == 19) {
-				  return false;
-			  };
+			  //if (index == 19) {
+			//	  return false;
+			  //};
 		});
 		/*
 		let writeButton = $("<span>");
