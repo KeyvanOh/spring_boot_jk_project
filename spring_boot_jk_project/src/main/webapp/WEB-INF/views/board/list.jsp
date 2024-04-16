@@ -321,8 +321,6 @@ let loadList = function() {
 	});	
 	
 	
-	addLoginModal();
-	buildPostModal();
 	
 	
 	let size = ajaxGetPostsSize();
@@ -407,7 +405,8 @@ let loadList = function() {
 	
 	
 	
-	
+	addLoginModal();
+	buildPostModal();
 	
 	
 
