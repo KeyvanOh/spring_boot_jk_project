@@ -57,17 +57,20 @@ let ajaxWrite = function() {
 };
 
 let ajaxGetPostsSize = function() {
+	let result = 0;
 	$.ajax({
 		type: "post",
 		url: "/board/ajax_posts_size",
 		data: 
 		{
 		},
-		//async: false,
+		async: false,
 		success: function(size, status) {
 			console.log(size);
+			result = size;
 		},
 	});
+	return result;
 };
 
 

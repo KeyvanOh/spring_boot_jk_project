@@ -40,7 +40,7 @@
 
 <script>
 
-console.log("wfe");
+console.log("wfgewge");
 
 //buildPostModal();
 
@@ -325,7 +325,7 @@ let loadList = function() {
 	buildPostModal();
 	
 	
-	ajaxGetPostsSize();
+	let size = ajaxGetPostsSize();
 	
 	
 	$("<div>").appendTo("#container")
@@ -336,23 +336,66 @@ let loadList = function() {
 		.css("top", "2rem")
 	;
 	
-	for (let i = 1; i <= 20; i++) {
+	let page = sessionStorage.getItem('page');
+	//if (sessionStorage.getItem('page') > 10) {
+	if (page > 10) {
 		
-		$("<span>").appendTo($("#divPages"))
-			.attr("id", "spanPage" + i)
-			.text(i)
-			.css("position", "absolute")
-			//.css("left", "0")
-			.css("left", i * 60 + "px")
-			.on("click", function() {
+		//console.log(sessionStorage.getItem('page'));
+		//console.log(page);
+		//console.log(parseInt(page) + 10);
+		
+		//for (let i = sessionStorage.getItem('page') - 10; i <= sessionStorage.getItem('page') + 10; i++) {
+		//for (let i = page - 10; i <= page + 10; i++) {
+		for (let i = page - 9; i <= parseInt(page) + 10; i++) {
+			//console.log(i);
+			
+			//console.log(size);
+			console.log(size / 20 + 1);
+			
+			
+			if (i <= (size / 20 + 1)) {
 				
-				console.log(i * 20);
-				sessionStorage.setItem('page', i);
-				showScene(sceneNumber)
-			})
-		;
+				$("<span>").appendTo($("#divPages"))
+					.attr("id", "spanPage" + i)
+					.text(i)
+					.css("position", "absolute")
+					//.css("left", "0")
+					//.css("left", i * 60 + "px")
+					.css("left", (i - page + 10) * 60 + "px")
+					.on("click", function() {
+						
+						//console.log(i * 20);
+						sessionStorage.setItem('page', i);
+						showScene(sceneNumber);
+					})
+				;
+				
+			};
+			
+		};
 		
+		
+		
+		
+	} else {
+		for (let i = 1; i <= 20; i++) {
+			$("<span>").appendTo($("#divPages"))
+				.attr("id", "spanPage" + i)
+				.text(i)
+				.css("position", "absolute")
+				//.css("left", "0")
+				.css("left", i * 60 + "px")
+				.on("click", function() {
+					
+					console.log(i * 20);
+					sessionStorage.setItem('page', i);
+					showScene(sceneNumber)
+				})
+			;
+		};
 	};
+	
+	
 	
 	
 	
