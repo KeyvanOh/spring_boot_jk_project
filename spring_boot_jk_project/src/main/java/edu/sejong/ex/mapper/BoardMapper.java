@@ -9,7 +9,8 @@ import edu.sejong.ex.vo.BuserVO;
 
 @Mapper
 public interface BoardMapper {
-	List<BoardVO> selectList();
+	//List<BoardVO> selectList();
+	List<BoardVO> selectList(int page);
 
 //	int insert(EmpVO empVO);
 //	int delete(EmpVO empVO);

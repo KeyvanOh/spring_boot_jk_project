@@ -18,11 +18,13 @@ public class BoardServiceImpl implements BoardService {
 	private BoardMapper boardMapper;
 
 	@Override
-	public List<BoardVO> getList() {
+	//public List<BoardVO> getList() {
+	public List<BoardVO> getList(int page) {
 		// System.out.println("getList()..");
 		log.info("getList()..log..");
 
-		return boardMapper.selectList();
+		//return boardMapper.selectList();
+		return boardMapper.selectList(page);
 	}
 
 	@Override

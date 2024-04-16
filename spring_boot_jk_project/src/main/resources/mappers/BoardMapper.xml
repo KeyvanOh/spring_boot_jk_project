@@ -18,10 +18,10 @@ PLIKE             NUMBER(5)
 			(
 			    select a.*, rownum as rn  
 			    from board a
-			    where rownum <= 20 * 1
+			    where rownum <= 20 * #{page}
 			    order by pnumber desc
 			)
-			where rn > 20 * (1 - 1)
+			where rn > 20 * (#{page} - 1)
         ]]>
     </select>
     <select id="selectListWithBuid" resultType="edu.sejong.ex.vo.BuserVO">

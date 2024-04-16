@@ -7,7 +7,8 @@ import edu.sejong.ex.vo.BuserVO;
 
 public interface BoardService {
 
-	List<BoardVO> getList();
+	//List<BoardVO> getList();
+	List<BoardVO> getList(int page);
 
 	List<BuserVO> getListWithBuid(String buid);
 

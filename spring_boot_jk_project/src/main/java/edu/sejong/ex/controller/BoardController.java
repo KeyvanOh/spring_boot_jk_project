@@ -18,7 +18,7 @@ public class BoardController {
 	@GetMapping("/list")
 	public String list(Model model) {
 		System.out.println("list()..");
-		model.addAttribute("boards", boardService.getList());
+		//model.addAttribute("boards", boardService.getList());
 
 		return "/board/list";
 	}

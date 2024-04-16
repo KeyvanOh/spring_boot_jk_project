@@ -20,9 +20,13 @@ public class BoardRestController {
 	private BoardService boardService;
 
 	@RequestMapping("/ajax_list")
-	public List<BoardVO> ajaxList() {
+	//public List<BoardVO> ajaxList() {
+	public List<BoardVO> ajaxList(
+		@RequestParam("page") int page
+	) {
 		log.info("ajaxList()..");
-		return boardService.getList();
+		//return boardService.getList();
+		return boardService.getList(page);
 	}
 
 	@RequestMapping("/ajax_list_with_buid")

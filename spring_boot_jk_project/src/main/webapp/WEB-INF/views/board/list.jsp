@@ -71,6 +71,11 @@ alert($.session.get("myVar"));
 
 console.log(sessionStorage.getItem('buid'));
 
+if (sessionStorage.getItem('page') == null) {
+	sessionStorage.setItem('page', 1)
+};
+console.log(sessionStorage.getItem('page'));
+
 let sceneNumber = 0;
 //let sceneNumber = 1;
 
@@ -212,8 +217,9 @@ let loadList = function() {
 		.addClass("table")
 		.attr("border", "1")
 		.appendTo(container)
-		.css("position", "absolute")
-		.css("left", "0")
+		//.css("position", "absolute")
+		.css("position", "relative")
+		//.css("left", "0")
 		.css("top", "2rem");
 	let trColumn = $("<tr>");
 	trColumn.appendTo(table);
@@ -233,6 +239,7 @@ let loadList = function() {
 	
 	
 	$.get("/board/ajax_list", {
+		'page': sessionStorage.getItem('page'),
 	},
 	function(board, status) {
 		//console.log(board);
@@ -323,8 +330,10 @@ let loadList = function() {
 	
 	$("<div>").appendTo("#container")
 		.attr("id", "divPages")
-		.css("position", "absolute")
-		.css("top", "620px")
+		//.css("position", "absolute")
+		.css("position", "relative")
+		//.css("top", "620px")
+		.css("top", "2rem")
 	;
 	
 	for (let i = 1; i <= 20; i++) {
@@ -338,6 +347,8 @@ let loadList = function() {
 			.on("click", function() {
 				
 				console.log(i * 20);
+				sessionStorage.setItem('page', i);
+				showScene(sceneNumber)
 			})
 		;
 		
