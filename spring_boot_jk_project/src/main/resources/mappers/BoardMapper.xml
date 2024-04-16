@@ -13,7 +13,15 @@ PLIKE             NUMBER(5)
 <mapper namespace="edu.sejong.ex.mapper.BoardMapper">
     <select id="selectList" resultType="edu.sejong.ex.vo.BoardVO">
         <![CDATA[
-        	select * from board where rownum <= 20 order by pnumber desc
+			select * 
+			from 
+			(
+			    select a.*, rownum as rn  
+			    from board a
+			    where rownum <= 20 * 1
+			    order by pnumber desc
+			)
+			where rn > 20 * (1 - 1)
         ]]>
     </select>
     <select id="selectListWithBuid" resultType="edu.sejong.ex.vo.BuserVO">
