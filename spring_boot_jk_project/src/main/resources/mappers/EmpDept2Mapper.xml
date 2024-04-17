@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+PNUMBER  NOT NULL NUMBER(4)      
+PID               VARCHAR2(12)   
+PTITLE            VARCHAR2(30)   
+PCONTENT          VARCHAR2(3000) 
+PIMAGE            VARCHAR2(1000) 
+PHIT              NUMBER(5)      
+PLIKE             NUMBER(5)      
+ -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.sejong.ex.mapper.EmpDept2Mapper">
+    <select id="selectList" resultType="edu.sejong.ex.vo.EmpDept2VO">
+        <![CDATA[
+			select emp.empno, emp.ename, emp.sal, emp.deptno, dept.dname 
+				from emp, dept where emp.deptno = dept.deptno
+        ]]>
+    </select>
+    
+    
+    <select id="selectListEmp" resultType="edu.sejong.ex.vo.EmpVO2">
+        <![CDATA[
+			select emp.empno, emp.ename, emp.sal, emp.deptno, dept.dname 
+				from emp, dept where emp.deptno = dept.deptno
+        ]]>
+    </select>
+    <select id="selectListDept" resultType="edu.sejong.ex.vo.DeptVO2">
+        <![CDATA[
+			select emp.empno, emp.ename, emp.sal, emp.deptno, dept.dname 
+				from emp, dept where emp.deptno = dept.deptno
+        ]]>
+    </select>
+    
+    
+    
+    
+    
+    <resultMap id="empMap" type="edu.sejong.ex.vo.EmpVO2" >
+    	<result property="empno" column="empno" />
+    	<result property="ename" column="ename" />
+    	<result property="job" column="job" />
+    	<result property="mgr" column="mgr" />
+    	<result property="hiredate" column="hiredate" />
+    	<result property="sal" column="sal" />
+    	<result property="comm" column="comm" />
+    	<result property="deptno" column="deptno" />
+    </resultMap>
+
+    <resultMap id="deptEmpMap" type="edu.sejong.ex.vo.DeptEmpVO">
+    	<result property="deptno" column="deptno" />
+    	<result property="dname" column="dname" />
+    	<result property="loc" column="loc" />
+    	<collection property="empList" resultMap="empMap" />
+    </resultMap>
+    
+    <select id="getDeptEmpList" resultMap="deptEmpMap">
+        <![CDATA[
+        	select * from emp, dept where emp.deptno = dept.deptno order by empno
+        ]]>
+    </select>
+    
+    
+
+    
+</mapper>

@@ -43,6 +43,12 @@ DEPTNO            NUMBER(2)
         	select deptno from emp where deptno is not null group by deptno
         ]]>
     </select>
+    <!-- code6 -->
+    <select id="selectEmpSalgradeList" resultType="edu.sejong.ex.vo.EmpSalgradeVO">
+        <![CDATA[
+        	select * from emp, salgrade where sal >= losal and sal <= hisal
+        ]]>
+    </select>
     
     
 </mapper>
