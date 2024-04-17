@@ -21,7 +21,7 @@ public class BService1 {
 		
 		return dao.listDAO();
 		
-	};
+	}
 	
 	
 	
