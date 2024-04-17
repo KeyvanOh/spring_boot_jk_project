@@ -50,7 +50,7 @@ let ajaxWrite = function() {
 			'pcontent': $("#textareaPcontent").val(),
 			'pimage': $("#inputPimage").val()
 		},
-		//async: false,
+		async: false,
 		success: function(board, status) {
 		},
 	});
