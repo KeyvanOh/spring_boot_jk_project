@@ -81,22 +81,19 @@ class EmpDept2MapperTest {
 	@Test
 	void testGetDeptEmpList() {
 
-		//log.info(empDept2Mapper.getDeptEmpList());
-		
-		
-		//System.out.println(empDept2Mapper.getDeptEmpList());
-		
+		// log.info(empDept2Mapper.getDeptEmpList());
+
+		// System.out.println(empDept2Mapper.getDeptEmpList());
+
 		for (DeptEmpVO vo : empDept2Mapper.getDeptEmpList()) {
-			
-			//System.out.println(vo);
-			//System.out.println(vo.getEmpList());
-			
-			
+
+			// System.out.println(vo);
+			// System.out.println(vo.getEmpList());
+
 			for (EmpVO2 vo2 : vo.getEmpList()) {
-				
-				//System.out.println(vo2);
-				
-				
+
+				// System.out.println(vo2);
+
 				int empno = vo2.getEmpno();
 				String ename = vo2.getEname();
 				int sal = vo2.getSal();
@@ -119,12 +116,11 @@ class EmpDept2MapperTest {
 
 				// System.out.println(str);
 				log.info(str);
-				
-				
+
 			}
-			
-		};
-		
+
+		}
+		;
 
 	}
 }

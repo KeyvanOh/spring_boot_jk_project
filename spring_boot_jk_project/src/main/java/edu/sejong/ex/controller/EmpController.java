@@ -11,8 +11,10 @@ import edu.sejong.ex.service.DeptEmpService;
 import edu.sejong.ex.service.DeptService;
 import edu.sejong.ex.service.EmpService;
 import edu.sejong.ex.vo.EmpVO;
+import lombok.extern.slf4j.Slf4j;
 
 //@WebServlet("/jk/*")
+@Slf4j
 @Controller
 @RequestMapping("/emp")
 public class EmpController {
@@ -71,6 +73,13 @@ public class EmpController {
 		model.addAttribute("deptemps", deptEmpService.getList());
 
 		return "/emp/joinTest";
+	}
+
+	@GetMapping("/salgrade")
+	public String salgrade(Model model) {
+		log.info("salgrade()..");
+		model.addAttribute("empSalgrades", empService.getEmpSalgradeVOList());
+		return "/emp/salgrade";
 	}
 
 }

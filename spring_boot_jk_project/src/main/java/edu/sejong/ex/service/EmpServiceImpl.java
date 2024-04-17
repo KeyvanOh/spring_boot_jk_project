@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.sejong.ex.mapper.EmpMapper;
+import edu.sejong.ex.vo.EmpSalgradeVO;
 import edu.sejong.ex.vo.EmpVO;
 import edu.sejong.ex.vo.MgrVO;
 import lombok.extern.slf4j.Slf4j;
@@ -67,5 +68,11 @@ public class EmpServiceImpl implements EmpService {
 
 		// return empRepository.selectDeptnosList();
 		return empMapper.selectDeptnosList();
+	}
+
+	@Override
+	public List<EmpSalgradeVO> getEmpSalgradeVOList() {
+		log.info("getEmpSalgradeVOList()..");
+		return empMapper.selectEmpSalgradeList();
 	};
 }

@@ -34,17 +34,9 @@
 		<div class="container">
 			<table border="1" class="table" style="margin-bottom: 0">
 				<tr>
-					<td>사원번호</td>
 					<td>이름</td>
-					<td>직무</td>
-					<td>매니저 번호</td>
-					<td>입사일</td>
-					<td>급여</td>
-					<td>보너스</td>
-					<td>부서번호</td>
-					<td>부서이름</td>
-					<td>위치</td>
-					<td>삭제</td>
+					<td>월급</td>
+					<td>월급등급</td>
 				</tr>
 				
 				
@@ -60,32 +52,14 @@ DEPTNO            NUMBER(2)
 Name     Null?    Type       		
 	
  -->				
-				<c:forEach var="deptemp" items="${deptemps }">
-					
-					
-					<c:forEach var="emp" items="${deptemp.empList }">
-					
-					
+ 
+<!-- code1 -->
+				<c:forEach var="empSalgrade" items="${empSalgrades }">
 					<tr>
-						<td>${emp.empno }</td>
-						<td>${emp.ename }</td>
-						<td>${emp.job }</td>
-						<td>${emp.mgr }</td>
-						<td>${emp.hiredate }</td>
-						<td>${emp.sal }</td>
-						<td>${emp.comm }</td>
-						<td>${emp.deptno }</td>
-						<td>${deptemp.dname }</td>
-						<td>${deptemp.loc }</td>
-						<td>
-						
-						<a href="${pageContext.request.contextPath}/emp/remove?empno=${emp.empno}"><button class="button">삭제</button></a>
-						
-						</td>
+						<td>${empSalgrade.ename }</td>
+						<td>${empSalgrade.sal }</td>
+						<td>${empSalgrade.grade }</td>
 					</tr>
-					
-					</c:forEach>
-					
 				</c:forEach>
 			</table>
 			
