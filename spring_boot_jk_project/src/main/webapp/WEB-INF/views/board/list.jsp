@@ -40,7 +40,7 @@
 
 <script>
 
-console.log("wge");
+console.log("wgewge");
 
 //buildPostModal();
 
@@ -106,10 +106,81 @@ let showPost = function(value) {
 		.css("margin-bottom", "0")
 		.css("margin-top", "1rem")
 		.on("click", function() {
-			console.log("comment here.");
+			//console.log("comment here.");
+			
+			if (sessionStorage.getItem('buid') != null) {
+				console.log("comment here.");
+				
+				//$("<input>").attr("type", "text")
+				//	.appendTo($(this).parent())
+				//;
+				
+				let divComment = $(this).parent().children(".divComment");
+				if (divComment.css("display") == "none") {
+					divComment.css("display", "block")
+				} else {
+					divComment.css("display", "none")
+				};
+				
+				
+				
+			};
+			//console.log(sessionStorage.getItem('buid'));
+			
+			
+			
+			
+			
+			
 		})
 		//.css("border-top", "1px solid yellow")
 	;
+	
+	
+	let divComment = $("<div>").appendTo(divPost)
+		.addClass("divComment")
+		.css("display", "none")
+	;
+	
+	$("<input>").attr("type", "text")
+		.appendTo(divComment)
+		.css("width", "100%")
+		.on("keypress", function(e) {
+			let ccontent = $(this).val();
+			if (ccontent != "" && e.which == 13) {
+				
+				/*
+				
+					PNUMBER                NUMBER(4)    
+					CNUMBER       NOT NULL NUMBER(6)    
+					PARENTCNUMBER          NUMBER(2)    
+					CID                    VARCHAR2(12) 
+					CCONTENT               VARCHAR2(30) 
+					CDATE                  DATE         
+				
+				*/
+				
+				console.log("pnumber: " + value.pnumber);
+				//console.log("cnumber: " + divComment.children().length);
+				console.log("cnumber: " + "comment_sequence");
+				console.log("parentcnumber: " + null);
+				console.log("cid: " + sessionStorage.getItem('buid'));
+				console.log("ccontent: " + ccontent);
+				console.log("cdate: " + "sysdate");
+				
+				
+				
+				
+				
+				$(this).val("");
+				
+				
+				
+			};
+		})
+	;
+	
+	
 };
 
 
