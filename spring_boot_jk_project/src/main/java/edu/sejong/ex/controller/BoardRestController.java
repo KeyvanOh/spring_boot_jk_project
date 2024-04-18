@@ -77,4 +77,11 @@ public class BoardRestController {
 		// return boardService.getCountOfPosts();
 	}
 
+	@RequestMapping("/ajax_commentList")
+	// public List<BoardVO> ajaxList() {
+	public List<CommentsVO> ajaxCommentList(@RequestParam("pnumber") int pnumber) {
+		log.info("ajaxCommentList()..");
+		return boardService.getCommentList(pnumber);
+	}
+
 }

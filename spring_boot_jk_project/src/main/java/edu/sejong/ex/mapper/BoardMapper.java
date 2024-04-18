@@ -27,4 +27,6 @@ public interface BoardMapper {
 	int selectCountOfBoard();
 
 	void insertIntoComments(CommentsVO vo);
+
+	List<CommentsVO> selectCommentList(int pnumber);
 }

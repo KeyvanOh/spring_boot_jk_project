@@ -21,5 +21,7 @@ public interface BoardService {
 
 	void addComment(CommentsVO vo);
 
+	List<CommentsVO> getCommentList(int pnumber);
+
 
 }

@@ -19,12 +19,12 @@ public class BoardServiceImpl implements BoardService {
 	private BoardMapper boardMapper;
 
 	@Override
-	//public List<BoardVO> getList() {
+	// public List<BoardVO> getList() {
 	public List<BoardVO> getList(int page) {
 		// System.out.println("getList()..");
 		log.info("getList()..log..");
 
-		//return boardMapper.selectList();
+		// return boardMapper.selectList();
 		return boardMapper.selectList(page);
 	}
 
@@ -38,30 +38,37 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void registerBuser(BuserVO vo) {
 		log.info("registerBuser()..log..");
-		
+
 		boardMapper.insertIntoBuser(vo);
 	}
 
 	@Override
 	public void writePost(BoardVO vo) {
 		log.info("writePost()..log..");
-		
+
 		boardMapper.insertIntoBoard(vo);
 	}
 
 	@Override
 	public int getCountOfPosts() {
 		log.info("getCountOfPosts()..log..");
-		
+
 		return boardMapper.selectCountOfBoard();
 	}
 
 	@Override
 	public void addComment(CommentsVO vo) {
 		log.info("addComment()..log..");
-		
+
 		boardMapper.insertIntoComments(vo);
-		
+
+	}
+
+	@Override
+	public List<CommentsVO> getCommentList(int pnumber) {
+		log.info("getCommentList()..log..");
+
+		return boardMapper.selectCommentList(pnumber);
 	}
 
 }

@@ -67,8 +67,11 @@ PLIKE             NUMBER(5)
     </insert>
     
     
-    
-    
+    <select id="selectCommentList" resultType="edu.sejong.ex.vo.CommentsVO">
+        <![CDATA[
+			select * from comments where pnumber = #{pnumber}
+        ]]>
+    </select>    
     
 
     

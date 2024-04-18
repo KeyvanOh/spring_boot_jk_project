@@ -40,7 +40,7 @@
 
 <script>
 
-console.log("wgewgdge");
+console.log("ffwe");
 
 //buildPostModal();
 
@@ -118,6 +118,28 @@ let showPost = function(value) {
 				let divComment = $(this).parent().children(".divComment");
 				if (divComment.css("display") == "none") {
 					divComment.css("display", "block")
+					
+					
+					console.log("show the comments.");
+					
+					$.ajax({
+						type: "post",
+						url: "/board/ajax_commentList",
+						data: 
+						{
+							'pnumber': value.pnumber,
+						},
+						async: false,
+						success: function(data, status) {
+							
+							console.log(data);
+							
+							
+						},
+					});
+					
+					
+					
 				} else {
 					divComment.css("display", "none")
 				};
