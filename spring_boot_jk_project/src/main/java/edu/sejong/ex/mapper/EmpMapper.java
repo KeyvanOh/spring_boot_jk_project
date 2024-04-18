@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import edu.sejong.ex.vo.EmpSalgradeDeptVO;
 import edu.sejong.ex.vo.EmpSalgradeVO;
 import edu.sejong.ex.vo.EmpVO;
 import edu.sejong.ex.vo.MgrVO;
@@ -22,8 +23,8 @@ public interface EmpMapper {
 
 	List<Integer> selectDeptnosList();
 
-	
-	
 	List<EmpSalgradeVO> selectEmpSalgradeList();
+
+	List<EmpSalgradeDeptVO> selectEmpSalgradeDeptList();
 
 }

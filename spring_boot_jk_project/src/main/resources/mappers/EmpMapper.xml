@@ -50,5 +50,11 @@ DEPTNO            NUMBER(2)
         ]]>
     </select>
     
+    <select id="selectEmpSalgradeDeptList" resultType="edu.sejong.ex.vo.EmpSalgradeDeptVO">
+        <![CDATA[
+        	select * from emp, salgrade, dept where sal >= losal and sal <= hisal and emp.deptno = dept.deptno
+        ]]>
+    </select>
+    
     
 </mapper>
