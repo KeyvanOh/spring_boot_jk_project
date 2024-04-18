@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.sejong.ex.mapper.UserMapper">
+    <select id="getUser" resultType="edu.sejong.ex.vo.UserVO">
+        <![CDATA[
+        	select users.*, authorities.authority 
+        	from users, authorities 
+        	where users.username = authorities.username and users.username = #{username}
+        ]]>
+    </select>
+    
+    
+</mapper>

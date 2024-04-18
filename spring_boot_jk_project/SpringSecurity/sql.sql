@@ -1,3 +1,14 @@
+select * from emp;
+select * from salgrade;
+select * from dept;
+
+select * from emp, salgrade;
+select * from emp, salgrade where sal >= losal and sal <= hisal;
+
+select * from emp, salgrade, dept where sal >= losal and sal <= hisal and emp.deptno = dept.deptno;
+
+
+desc dept;
 
 
 desc users;
@@ -64,8 +75,17 @@ insert into authorities values (
 
 commit;
 
+
 select * from users;
+select * from users where username = 'user';
+
 select * from authorities;
+
+select * from users, authorities;
+select * from users, authorities where users.username = authorities.username;
+select * from users, authorities where users.username = authorities.username and users.username = 'user';
+select users.*, authorities.authority from users, authorities where users.username = authorities.username and users.username = 'admin';
+
 
 insert into authorities values (
     'user',
@@ -83,9 +103,9 @@ insert into authorities values (
 delete from authorities where username = 'user' and authority = 'ROLE_ADMIN';
 
 
+desc users;
 
 
-
-
+desc authorities;
 
 
