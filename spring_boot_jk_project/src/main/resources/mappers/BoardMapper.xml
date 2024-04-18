@@ -53,6 +53,19 @@ PLIKE             NUMBER(5)
 		]]>
     </insert>
     
+    <insert id="insertIntoComments">
+        <![CDATA[
+			insert into comments values (
+			    #{pnumber},
+			    comment_sequence.nextval,
+			    null,
+			    #{cid},
+			    #{ccontent},
+			    sysdate
+			)
+		]]>
+    </insert>
+    
     
     
     

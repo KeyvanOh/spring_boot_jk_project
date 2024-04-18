@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import edu.sejong.ex.mapper.BoardMapper;
 import edu.sejong.ex.vo.BoardVO;
 import edu.sejong.ex.vo.BuserVO;
+import edu.sejong.ex.vo.CommentsVO;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -53,6 +54,14 @@ public class BoardServiceImpl implements BoardService {
 		log.info("getCountOfPosts()..log..");
 		
 		return boardMapper.selectCountOfBoard();
+	}
+
+	@Override
+	public void addComment(CommentsVO vo) {
+		log.info("addComment()..log..");
+		
+		boardMapper.insertIntoComments(vo);
+		
 	}
 
 }

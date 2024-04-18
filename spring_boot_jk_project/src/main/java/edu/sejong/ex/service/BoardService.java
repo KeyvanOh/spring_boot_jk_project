@@ -4,6 +4,7 @@ import java.util.List;
 
 import edu.sejong.ex.vo.BoardVO;
 import edu.sejong.ex.vo.BuserVO;
+import edu.sejong.ex.vo.CommentsVO;
 
 public interface BoardService {
 
@@ -17,6 +18,8 @@ public interface BoardService {
 	void writePost(BoardVO vo);
 	
 	int getCountOfPosts();
+
+	void addComment(CommentsVO vo);
 
 
 }

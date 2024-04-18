@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.sejong.ex.service.BoardService;
 import edu.sejong.ex.vo.BoardVO;
 import edu.sejong.ex.vo.BuserVO;
+import edu.sejong.ex.vo.CommentsVO;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -20,12 +21,10 @@ public class BoardRestController {
 	private BoardService boardService;
 
 	@RequestMapping("/ajax_list")
-	//public List<BoardVO> ajaxList() {
-	public List<BoardVO> ajaxList(
-		@RequestParam("page") int page
-	) {
+	// public List<BoardVO> ajaxList() {
+	public List<BoardVO> ajaxList(@RequestParam("page") int page) {
 		log.info("ajaxList()..");
-		//return boardService.getList();
+		// return boardService.getList();
 		return boardService.getList(page);
 	}
 
@@ -56,12 +55,26 @@ public class BoardRestController {
 		// boardService.registerBuser(vo);
 		boardService.writePost(vo);
 	}
-	
+
 	@RequestMapping("/ajax_posts_size")
 	public int ajaxPostsSize() {
 		log.info("ajaxPostsSize()..");
 		return boardService.getCountOfPosts();
 	}
-	
+
+	@RequestMapping("/ajax_comment")
+	public void ajaxAddComment(@RequestParam("pnumber") int pnumber, @RequestParam("cid") String cid,
+			@RequestParam("ccontent") String ccontent) {
+		log.info("ajaxAddComment()..");
+
+		CommentsVO vo = new CommentsVO();
+		vo.setPnumber(pnumber);
+		vo.setCid(cid);
+		vo.setCcontent(ccontent);
+
+		boardService.addComment(vo);
+
+		// return boardService.getCountOfPosts();
+	}
 
 }

@@ -172,6 +172,26 @@ let showPost = function(value) {
 				
 				
 				
+				$.ajax({
+					type: "post",
+					url: "/board/ajax_comment",
+					data: 
+					{
+						'pnumber': value.pnumber,
+						//'cnumber': comment_sequence,
+						//'parentcnumber': null,
+						'cid': sessionStorage.getItem('buid'),
+						'ccontent': ccontent
+						//'cdate': sysdate
+					},
+					async: false,
+					success: function(board, status) {
+					},
+				});
+				
+				
+				
+				
 				$(this).val("");
 				
 				

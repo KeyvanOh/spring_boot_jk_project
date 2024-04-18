@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import edu.sejong.ex.vo.BoardVO;
 import edu.sejong.ex.vo.BuserVO;
+import edu.sejong.ex.vo.CommentsVO;
 
 @Mapper
 public interface BoardMapper {
@@ -24,4 +25,6 @@ public interface BoardMapper {
 	void insertIntoBoard(BoardVO vo);
 	
 	int selectCountOfBoard();
+
+	void insertIntoComments(CommentsVO vo);
 }
