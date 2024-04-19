@@ -230,7 +230,8 @@ let showPost = function(value) {
 				$("<span>").appendTo(divCommentOne)
 					//.text(value2.cdate)
 					//.text("cdate")
-					.text(Date.now())
+					//.text(Date.now())
+					.text(new Date())
 					//.text(Date.now().getTime())
 				;
 				
