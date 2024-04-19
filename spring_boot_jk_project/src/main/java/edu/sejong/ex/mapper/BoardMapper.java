@@ -29,4 +29,6 @@ public interface BoardMapper {
 	void insertIntoComments(CommentsVO vo);
 
 	List<CommentsVO> selectCommentList(int pnumber);
+
+	void deletePostFromPnumber(int pnumber);
 }

@@ -3,6 +3,7 @@ package edu.sejong.ex.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +27,14 @@ public class BoardRestController {
 		log.info("ajaxList()..");
 		// return boardService.getList();
 		return boardService.getList(page);
+	}
+
+	@RequestMapping("/ajax_list2")
+	// public List<BoardVO> ajaxList() {
+	public List<BoardVO> ajaxList2() {
+		log.info("ajaxList2()..");
+		// return boardService.getList();
+		return boardService.getList(1);
 	}
 
 	@RequestMapping("/ajax_list_with_buid")
@@ -82,6 +91,13 @@ public class BoardRestController {
 	public List<CommentsVO> ajaxCommentList(@RequestParam("pnumber") int pnumber) {
 		log.info("ajaxCommentList()..");
 		return boardService.getCommentList(pnumber);
+	}
+
+	//@RequestMapping("/ajax_delete")
+	@DeleteMapping("/ajax_delete")
+	public void ajaxDelete(@RequestParam("pnumber") int pnumber) {
+		log.info("ajaxDelete()..");
+		boardService.deletePost(pnumber);
 	}
 
 }

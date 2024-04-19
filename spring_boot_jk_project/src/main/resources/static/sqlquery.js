@@ -124,7 +124,20 @@ let ajaxPostComment = function(pnumber, cid, ccontent) {
 	
 };
 
-
+let ajaxDelete = function(pnumber) {
+	$.ajax({
+		//type: "post",
+		type: "delete",
+		url: "/board/ajax_delete",
+		data: 
+		{
+			'pnumber': pnumber
+		},
+		async: false,
+		success: function(data, status) {
+		},
+	});
+};
 
 
 

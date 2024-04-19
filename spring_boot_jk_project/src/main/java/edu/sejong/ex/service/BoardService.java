@@ -23,5 +23,7 @@ public interface BoardService {
 
 	List<CommentsVO> getCommentList(int pnumber);
 
+	void deletePost(int pnumber);
+
 
 }

@@ -71,4 +71,11 @@ public class BoardServiceImpl implements BoardService {
 		return boardMapper.selectCommentList(pnumber);
 	}
 
+	@Override
+	public void deletePost(int pnumber) {
+		log.info("deletePost()..log..");
+
+		boardMapper.deletePostFromPnumber(pnumber);
+	}
+
 }

@@ -213,7 +213,7 @@ let showPost = function(value) {
 				
 				$(this).val("");
 				
-				
+				//let date = new Date();
 				
 				let divCommentOne = $("<div>").appendTo(divComment)
 					.addClass("d-flex justify-content-between");
@@ -232,6 +232,8 @@ let showPost = function(value) {
 					//.text("cdate")
 					//.text(Date.now())
 					.text(new Date())
+					//.text(date.getTime())
+					//.text(date)
 					//.text(Date.now().getTime())
 				;
 				
@@ -476,8 +478,36 @@ let loadList = function() {
 				  	pPtitle.text("x")
 			  		showPost(value);
 			  };
-			  $("<td>").text(value.pdate)
-			  	.appendTo(tr);
+				$("<td>").text(value.pdate)
+					.appendTo(tr)
+					.on("click", function() {
+						//console.log(value.pid);
+						//console.log(sessionStorage.getItem('buid'));
+						
+						if (value.pid == sessionStorage.getItem('buid')) {
+							
+							console.log("the write is here");
+							//alert("wanna delete?");
+							//confirm("wanna delete?");
+							if (confirm("wanna delete?") == true) {
+								//console.log("delete it");
+								console.log("delete the post" + value.pnumber);
+								
+								//$.ajax
+								ajaxDelete(value.pnumber);
+								//loadList();
+								showScene(sceneNumber);
+								
+							} else {
+								//console.log("ok whatever");
+							};
+							
+							
+						};
+						
+						
+					})
+				;
 			  $("<td>").text(value.phit)
 			  	.appendTo(tr);
 			  $("<td>").text(value.plike)

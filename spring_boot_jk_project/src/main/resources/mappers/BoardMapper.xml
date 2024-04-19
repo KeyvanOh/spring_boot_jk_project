@@ -73,6 +73,11 @@ PLIKE             NUMBER(5)
         ]]>
     </select>    
     
+    <delete id="deletePostFromPnumber">
+        <![CDATA[
+        	delete from board where pnumber = #{pnumber}
+		]]>
+    </delete>    
 
     
 </mapper>
