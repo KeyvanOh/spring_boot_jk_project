@@ -69,7 +69,7 @@ PLIKE             NUMBER(5)
     
     <select id="selectCommentList" resultType="edu.sejong.ex.vo.CommentsVO">
         <![CDATA[
-			select * from comments where pnumber = #{pnumber}
+			select * from comments where pnumber = #{pnumber} order by cnumber
         ]]>
     </select>    
     

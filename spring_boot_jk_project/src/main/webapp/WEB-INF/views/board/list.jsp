@@ -40,7 +40,7 @@
 
 <script>
 
-console.log("ffwe");
+console.log("gggg");
 
 //buildPostModal();
 
@@ -122,6 +122,7 @@ let showPost = function(value) {
 					
 					console.log("show the comments.");
 					
+					/*
 					$.ajax({
 						type: "post",
 						url: "/board/ajax_commentList",
@@ -137,7 +138,11 @@ let showPost = function(value) {
 							
 						},
 					});
+					*/
 					
+					
+					//ajaxGetComments(value.pnumber);
+					console.log(ajaxGetComments(value.pnumber));
 					
 					
 				} else {
@@ -170,18 +175,14 @@ let showPost = function(value) {
 		.on("keypress", function(e) {
 			let ccontent = $(this).val();
 			if (ccontent != "" && e.which == 13) {
-				
 				/*
-				
 					PNUMBER                NUMBER(4)    
 					CNUMBER       NOT NULL NUMBER(6)    
 					PARENTCNUMBER          NUMBER(2)    
 					CID                    VARCHAR2(12) 
 					CCONTENT               VARCHAR2(30) 
 					CDATE                  DATE         
-				
 				*/
-				
 				console.log("pnumber: " + value.pnumber);
 				//console.log("cnumber: " + divComment.children().length);
 				console.log("cnumber: " + "comment_sequence");
@@ -189,11 +190,7 @@ let showPost = function(value) {
 				console.log("cid: " + sessionStorage.getItem('buid'));
 				console.log("ccontent: " + ccontent);
 				console.log("cdate: " + "sysdate");
-				
-				
-				
-				
-				
+				/*
 				$.ajax({
 					type: "post",
 					url: "/board/ajax_comment",
@@ -210,17 +207,77 @@ let showPost = function(value) {
 					success: function(board, status) {
 					},
 				});
+				*/
 				
-				
-				
+				ajaxPostComment(value.pnumber, sessionStorage.getItem('buid'), ccontent);
 				
 				$(this).val("");
+				
+				
+				
+				let divCommentOne = $("<div>").appendTo(divComment)
+					.addClass("d-flex justify-content-between");
+				;
+
+				$("<span>").appendTo(divCommentOne)
+					//.text(value2.cid)
+					.text(sessionStorage.getItem('buid'))
+				;
+				$("<span>").appendTo(divCommentOne)
+					//.text(value2.ccontent)
+					.text(ccontent)
+				;
+				$("<span>").appendTo(divCommentOne)
+					//.text(value2.cdate)
+					//.text("cdate")
+					.text(Date.now())
+					//.text(Date.now().getTime())
+				;
 				
 				
 				
 			};
 		})
 	;
+	//console.log("c1");
+	
+	let comments = ajaxGetComments(value.pnumber);
+	console.log(comments);
+	
+	//for()
+		
+	
+	
+	$.each(comments, function( index, value2 ) {
+	  //alert( index + ": " + value );
+	  //alert( index + ": " + value.ccontent );
+	  //alert(value.ccontent);
+
+		let divCommentOne = $("<div>").appendTo(divComment)
+			.addClass("d-flex justify-content-between");
+		;
+
+		$("<span>").appendTo(divCommentOne)
+			.text(value2.cid)
+		;
+		$("<span>").appendTo(divCommentOne)
+			.text(value2.ccontent)
+			//.css("margin-bottom", "0")
+			//.css("text-align", "left")
+		;
+		$("<span>").appendTo(divCommentOne)
+			.text(value2.cdate)
+		;
+		
+		
+	});	
+	
+	
+	//console.log("c2");
+	
+	
+	
+	
 	
 	
 };

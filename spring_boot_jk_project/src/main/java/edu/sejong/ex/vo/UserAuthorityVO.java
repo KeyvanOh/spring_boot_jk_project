@@ -24,8 +24,11 @@ AUTHORITY NOT NULL VARCHAR2(50)
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class UserVO {
+public class UserAuthorityVO {
 	private String username;
 	private String password;
 	private int enabled;
+
+	// private String username;
+	private String authority;
 }

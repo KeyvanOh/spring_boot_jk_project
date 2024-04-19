@@ -3,13 +3,43 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.sejong.ex.mapper.UserMapper">
-    <select id="getUser" resultType="edu.sejong.ex.vo.UserVO">
+    <select id="getUser" resultType="edu.sejong.ex.vo.UserAuthorityVO">
         <![CDATA[
         	select users.*, authorities.authority 
         	from users, authorities 
         	where users.username = authorities.username and users.username = #{username}
         ]]>
     </select>
+    
+<!--     <insert id="insertIntoBuser">
+        <![CDATA[
+			insert into buser values (
+			    #{buid},
+			    #{bupw}
+			)
+		]]>
+    </insert>   
+ -->     
+
+    <insert id="insertUser">
+        <![CDATA[
+			insert into users values (
+			    #{username},
+			    #{password},
+			    1
+			)
+		]]>
+    </insert>    
+    <insert id="insertAuthorities">
+        <![CDATA[
+			insert into authorities values (
+			    #{username},
+			    'ROLE_USER'
+			)
+		]]>
+    </insert>
+    
+    
     
     
 </mapper>

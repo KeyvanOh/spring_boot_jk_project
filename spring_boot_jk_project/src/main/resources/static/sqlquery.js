@@ -74,6 +74,66 @@ let ajaxGetPostsSize = function() {
 };
 
 
+let ajaxGetComments = function(pnumber) {
+	
+	let comments = [];
+	
+	$.ajax({
+		type: "post",
+		url: "/board/ajax_commentList",
+		data: 
+		{
+			//'pnumber': value.pnumber,
+			'pnumber': pnumber,
+		},
+		async: false,
+		success: function(data, status) {
+			
+			//console.log(data);
+			
+			comments = data;
+		},
+	});
+	
+	return comments;
+	
+};
+
+
+let ajaxPostComment = function(pnumber, cid, ccontent) {
+	
+	$.ajax({
+		type: "post",
+		url: "/board/ajax_comment",
+		data: 
+		{
+			//'pnumber': value.pnumber,
+			'pnumber': pnumber,
+			//'cnumber': comment_sequence,
+			//'parentcnumber': null,
+			//'cid': sessionStorage.getItem('buid'),
+			'cid': cid,
+			//'ccontent': ccontent
+			'ccontent': ccontent
+			//'cdate': sysdate
+		},
+		async: false,
+		success: function(board, status) {
+		},
+	});
+	
+};
+
+
+
+
+
+
+
+
+
+
+
 
 
 console.log("sqlquery.js loaded.");
