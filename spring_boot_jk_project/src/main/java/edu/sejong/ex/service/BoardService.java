@@ -5,6 +5,7 @@ import java.util.List;
 import edu.sejong.ex.vo.BoardVO;
 import edu.sejong.ex.vo.BuserVO;
 import edu.sejong.ex.vo.CommentsVO;
+import edu.sejong.ex.vo.PostviewVO;
 
 public interface BoardService {
 
@@ -24,6 +25,14 @@ public interface BoardService {
 	List<CommentsVO> getCommentList(int pnumber);
 
 	void deletePost(int pnumber);
+
+	void viewUp(int pnumber, String buid);
+
+	List<PostviewVO> getViewtListFromBuid(int pnumber, String buid);
+
+	List<PostviewVO> getViewtListFromPnumber(int pnumber);
+
+	void phitUp(int pnumber, int phit);
 
 
 }

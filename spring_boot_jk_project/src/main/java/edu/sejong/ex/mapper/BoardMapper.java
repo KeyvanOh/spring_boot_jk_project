@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import edu.sejong.ex.vo.BoardVO;
 import edu.sejong.ex.vo.BuserVO;
 import edu.sejong.ex.vo.CommentsVO;
+import edu.sejong.ex.vo.PostviewVO;
 
 @Mapper
 public interface BoardMapper {
@@ -31,4 +32,15 @@ public interface BoardMapper {
 	List<CommentsVO> selectCommentList(int pnumber);
 
 	void deletePostFromPnumber(int pnumber);
+
+	void insertPostview(int pnumber, String buid);
+
+	List<PostviewVO> selectPostviewListFromBuid(int pnumber, String buid);
+
+	List<PostviewVO> selectPostviewListFromPnumber(int pnumber);
+
+	void updateBoardPhit(int pnumber, int phit);
+	
+	
+	
 }

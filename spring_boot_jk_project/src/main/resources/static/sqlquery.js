@@ -139,8 +139,78 @@ let ajaxDelete = function(pnumber) {
 	});
 };
 
+let teststs = function() {
+	
+	console.log("teststs()..");
+	
+}
 
+let ajaxGetViewfromPnumber = function(pnumber) {
+	let view = 0;
+	$.ajax({
+		type: "post",
+		url: "/board/ajax_get_view_from_pnumber",
+		data: 
+		{
+			'pnumber': pnumber
+		},
+		async: false,
+		success: function(data, status) {
+			view = data.length;
+		},
+	});
+	return view;
+};
 
+let ajaxGetViewfromBuid = function(pnumber, buid) {
+	$.ajax({
+		type: "post",
+		url: "/board/ajax_get_view_from_buid",
+		data: 
+		{
+			'pnumber': pnumber,
+			'buid': buid
+		},
+		async: false,
+		success: function(data, status) {
+			console.log(data);
+			if (data.length == 0) {
+				ajaxView(pnumber, buid);
+			} else {
+			};				
+		},
+	});
+};
+
+let ajaxView = function(pnumber, buid) {
+	$.ajax({
+		type: "post",
+		url: "/board/ajax_view",
+		data: 
+		{
+			'pnumber': pnumber,
+			'buid': buid
+		},
+		async: false,
+		success: function(data, status) {
+		},
+	});
+};
+
+let ajaxUpdatePhit = function(pnumber, phit) {
+	$.ajax({
+		type: "post",
+		url: "/board/ajax_update_phit",
+		data: 
+		{
+			'pnumber': pnumber,
+			'phit': phit
+		},
+		async: false,
+		success: function(data, status) {
+		},
+	});
+};
 
 
 

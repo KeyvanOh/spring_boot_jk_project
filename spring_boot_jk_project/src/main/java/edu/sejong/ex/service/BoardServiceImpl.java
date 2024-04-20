@@ -9,6 +9,7 @@ import edu.sejong.ex.mapper.BoardMapper;
 import edu.sejong.ex.vo.BoardVO;
 import edu.sejong.ex.vo.BuserVO;
 import edu.sejong.ex.vo.CommentsVO;
+import edu.sejong.ex.vo.PostviewVO;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -76,6 +77,35 @@ public class BoardServiceImpl implements BoardService {
 		log.info("deletePost()..log..");
 
 		boardMapper.deletePostFromPnumber(pnumber);
+	}
+
+	@Override
+	public void viewUp(int pnumber, String buid) {
+		log.info("viewUp()..log..");
+
+		boardMapper.insertPostview(pnumber, buid);
+	}
+
+	@Override
+	public List<PostviewVO> getViewtListFromBuid(int pnumber, String buid) {
+		log.info("getViewtListFromBuid()..log..");
+
+		return boardMapper.selectPostviewListFromBuid(pnumber, buid);
+		// return boardMapper.getPostviewList(pnumber, buid);
+	}
+
+	@Override
+	public List<PostviewVO> getViewtListFromPnumber(int pnumber) {
+		log.info("getViewtListFromPnumber()..log..");
+
+		return boardMapper.selectPostviewListFromPnumber(pnumber);
+	}
+
+	@Override
+	public void phitUp(int pnumber, int phit) {
+		log.info("phitUp()..log..");
+		
+		boardMapper.updateBoardPhit(pnumber, phit);
 	}
 
 }

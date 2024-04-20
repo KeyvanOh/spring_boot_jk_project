@@ -77,7 +77,37 @@ PLIKE             NUMBER(5)
         <![CDATA[
         	delete from board where pnumber = #{pnumber}
 		]]>
-    </delete>    
-
+    </delete>
+    
+    
+    
+    <select id="selectPostviewListFromBuid" resultType="edu.sejong.ex.vo.PostviewVO">
+        <![CDATA[
+			select * from postview where pnumber = #{pnumber} and buid = #{buid}
+        ]]>
+    </select>
+    <select id="selectPostviewListFromPnumber" resultType="edu.sejong.ex.vo.PostviewVO">
+        <![CDATA[
+			select * from postview where pnumber = #{pnumber}
+        ]]>
+    </select>
+    <insert id="insertPostview">
+        <![CDATA[
+			insert into postview values(
+			    #{pnumber},
+			    #{buid}
+			)
+		]]>
+    </insert>
+    
+    <update id="updateBoardPhit">
+        <![CDATA[
+			update board set phit = #{phit} where pnumber = #{pnumber}
+		]]>
+    </update>
+    
+    
+    
+    
     
 </mapper>

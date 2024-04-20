@@ -40,7 +40,7 @@
 
 <script>
 
-console.log("gggg");
+console.log("23543");
 
 //buildPostModal();
 
@@ -110,6 +110,7 @@ let showPost = function(value) {
 			
 			if (sessionStorage.getItem('buid') != null) {
 				console.log("comment here.");
+				//console.log("title clicked");
 				
 				//$("<input>").attr("type", "text")
 				//	.appendTo($(this).parent())
@@ -247,8 +248,47 @@ let showPost = function(value) {
 	let comments = ajaxGetComments(value.pnumber);
 	console.log(comments);
 	
-	//for()
+	
+	console.log("list title clicked.");
+	console.log(value.pnumber);
+	
+	let buid = sessionStorage.getItem('buid');
+	//console.log(sessionStorage.getItem('buid'));
+	if (buid != null) {
 		
+		console.log(buid);
+		//console.log("234");
+		
+		//console.log(ajaxGetView());
+		
+		//ajaxGetView(value.pnumber, buid);
+		ajaxGetViewfromBuid(value.pnumber, buid);
+		//teststs();
+		
+		//console.log("ajaxGetView()wefewf..");
+		
+		
+		//console.log(value.phit);
+		//console.log(ajaxGetViewfromPnumber(value.pnumber));
+		
+		let phit = ajaxGetViewfromPnumber(value.pnumber);
+		if (value.phit != phit) {
+			console.log(phit);
+			
+			ajaxUpdatePhit(value.pnumber, phit);
+			
+			$("#td" + value.pnumber).text(phit);
+			
+			
+//.attr("id", "td" + value.pnumber)			
+			
+			console.log("444234");
+		};
+		
+		console.log("235");
+	};
+	
+	
 	
 	
 	$.each(comments, function( index, value2 ) {
@@ -509,7 +549,9 @@ let loadList = function() {
 					})
 				;
 			  $("<td>").text(value.phit)
-			  	.appendTo(tr);
+			  	.appendTo(tr)
+				.attr("id", "td" + value.pnumber)
+			;
 			  $("<td>").text(value.plike)
 			  	.appendTo(tr);
 			  tr.children().addClass("border-top");

@@ -3,6 +3,8 @@ package edu.sejong.ex.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,6 +14,7 @@ import edu.sejong.ex.service.BoardService;
 import edu.sejong.ex.vo.BoardVO;
 import edu.sejong.ex.vo.BuserVO;
 import edu.sejong.ex.vo.CommentsVO;
+import edu.sejong.ex.vo.PostviewVO;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -93,11 +96,77 @@ public class BoardRestController {
 		return boardService.getCommentList(pnumber);
 	}
 
-	//@RequestMapping("/ajax_delete")
+	// @RequestMapping("/ajax_delete")
 	@DeleteMapping("/ajax_delete")
-	public void ajaxDelete(@RequestParam("pnumber") int pnumber) {
+	// public void ajaxDelete(@RequestParam("pnumber") int pnumber) {
+	public ResponseEntity<String> ajaxDelete(@RequestParam("pnumber") int pnumber) {
 		log.info("ajaxDelete()..");
-		boardService.deletePost(pnumber);
+		ResponseEntity<String> entity = null;
+		try {
+			boardService.deletePost(pnumber);
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+		// boardService.deletePost(pnumber);
+	}
+
+	/*
+	 * @DeleteMapping("/{bid}") public ResponseEntity<String> rest_delete(BoardVO
+	 * boardVO) { ResponseEntity<String> entity = null; log.info("rest_delete..");
+	 * 
+	 * try { boardService.remove(boardVO.getBid()); // 삭제가 성공하면 성공 상태메시지 저장 entity =
+	 * new ResponseEntity<String>("SUCCESS", HttpStatus.OK); } catch (Exception e) {
+	 * e.printStackTrace(); // 댓글 삭제가 실패하면 실패 상태메시지 저장 entity = new
+	 * ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST); } // 삭제 처리
+	 * HTTP 상태 메시지 리턴 return entity;
+	 * 
+	 * }
+	 */
+
+	@RequestMapping("/ajax_view")
+	// public void ajaxDelete(@RequestParam("pnumber") int pnumber) {
+	public ResponseEntity<String> ajaxView(@RequestParam("pnumber") int pnumber, @RequestParam("buid") String buid) {
+		log.info("ajaxView()..");
+		ResponseEntity<String> entity = null;
+		try {
+			boardService.viewUp(pnumber, buid);
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+		// boardService.deletePost(pnumber);
+	}
+
+	@RequestMapping("/ajax_get_view_from_buid")
+	public List<PostviewVO> ajaxViewtListFromBuid(@RequestParam("pnumber") int pnumber,
+			@RequestParam("buid") String buid) {
+		log.info("ajaxViewtListFromBuid()..");
+		return boardService.getViewtListFromBuid(pnumber, buid);
+	}
+
+	@RequestMapping("/ajax_get_view_from_pnumber")
+	public List<PostviewVO> ajaxViewtListFromPnumber(@RequestParam("pnumber") int pnumber) {
+		log.info("ajaxViewtListFromPnumber()..");
+		return boardService.getViewtListFromPnumber(pnumber);
+	}
+
+	@RequestMapping("/ajax_update_phit")
+	public ResponseEntity<String> ajaxUpdatePhit(@RequestParam("pnumber") int pnumber, @RequestParam("phit") int phit) {
+		log.info("ajaxUpdatePhit()..");
+		ResponseEntity<String> entity = null;
+		try {
+			boardService.phitUp(pnumber, phit);
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
 	}
 
 }
