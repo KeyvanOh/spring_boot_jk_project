@@ -105,6 +105,11 @@ PLIKE             NUMBER(5)
 			update board set phit = #{phit} where pnumber = #{pnumber}
 		]]>
     </update>
+    <update id="updateBoardPlike">
+        <![CDATA[
+			update board set plike = #{plike} where pnumber = #{pnumber}
+		]]>
+    </update>
     
     
     

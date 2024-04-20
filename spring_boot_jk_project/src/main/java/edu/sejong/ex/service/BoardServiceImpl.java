@@ -108,4 +108,11 @@ public class BoardServiceImpl implements BoardService {
 		boardMapper.updateBoardPhit(pnumber, phit);
 	}
 
+	@Override
+	public void plikeUp(int pnumber, int plike) {
+		log.info("plikeUp()..log..");
+		
+		boardMapper.updateBoardPlike(pnumber, plike);
+	}
+
 }

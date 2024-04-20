@@ -34,5 +34,7 @@ public interface BoardService {
 
 	void phitUp(int pnumber, int phit);
 
+	void plikeUp(int pnumber, int plike);
+
 
 }

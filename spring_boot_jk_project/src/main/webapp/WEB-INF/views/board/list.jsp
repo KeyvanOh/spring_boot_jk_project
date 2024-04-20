@@ -277,7 +277,7 @@ let showPost = function(value) {
 			
 			ajaxUpdatePhit(value.pnumber, phit);
 			
-			$("#td" + value.pnumber).text(phit);
+			$("#tdPhit" + value.pnumber).text(phit);
 			
 			
 //.attr("id", "td" + value.pnumber)			
@@ -550,10 +550,37 @@ let loadList = function() {
 				;
 			  $("<td>").text(value.phit)
 			  	.appendTo(tr)
-				.attr("id", "td" + value.pnumber)
+				//.attr("id", "td" + value.pnumber)
+				.attr("id", "tdPhit" + value.pnumber)
 			;
 			  $("<td>").text(value.plike)
-			  	.appendTo(tr);
+			  	.appendTo(tr)
+				.on("click", function() {
+					
+					if (openedCnumber.has(value.pnumber)) {
+						
+						if (sessionStorage.getItem('buid') != null) {
+							if (confirm("Do you like this post?") == true) {
+								
+								console.log("like up the post" + value.pnumber);
+								
+								
+							} else {
+								console.log("ok whatever");
+							};
+							
+							
+							
+						};
+						
+						
+					};
+					
+					
+					
+					
+				})
+			;
 			  tr.children().addClass("border-top");
 			  //if (index == 19) {
 			//	  return false;

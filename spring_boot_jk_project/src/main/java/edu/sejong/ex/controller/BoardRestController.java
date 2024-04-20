@@ -169,4 +169,20 @@ public class BoardRestController {
 		return entity;
 	}
 
+	@RequestMapping("/ajax_update_plike")
+	public ResponseEntity<String> ajaxUpdatePlike(@RequestParam("pnumber") int pnumber,
+			@RequestParam("plike") int plike) {
+		log.info("ajaxUpdatePlike()..");
+		ResponseEntity<String> entity = null;
+		try {
+			// boardService.phitUp(pnumber, phit);
+			boardService.plikeUp(pnumber, plike);
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+
 }

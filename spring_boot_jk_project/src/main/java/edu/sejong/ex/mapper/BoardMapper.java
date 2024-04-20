@@ -40,6 +40,8 @@ public interface BoardMapper {
 	List<PostviewVO> selectPostviewListFromPnumber(int pnumber);
 
 	void updateBoardPhit(int pnumber, int phit);
+
+	void updateBoardPlike(int pnumber, int plike);
 	
 	
 	

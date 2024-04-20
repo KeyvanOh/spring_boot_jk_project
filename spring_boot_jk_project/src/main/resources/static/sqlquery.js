@@ -219,4 +219,28 @@ let ajaxUpdatePhit = function(pnumber, phit) {
 
 
 
+
+
+let ajaxUpdatePlike = function(pnumber, plike) {
+	$.ajax({
+		type: "post",
+		url: "/board/ajax_update_plike",
+		data: 
+		{
+			'pnumber': pnumber,
+			'plike': plike
+		},
+		async: false,
+		success: function(data, status) {
+		},
+	});
+};
+
+
+
+
+
+
+
+
 console.log("sqlquery.js loaded.");
