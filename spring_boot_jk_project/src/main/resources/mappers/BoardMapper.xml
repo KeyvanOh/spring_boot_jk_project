@@ -105,13 +105,34 @@ PLIKE             NUMBER(5)
 			update board set phit = #{phit} where pnumber = #{pnumber}
 		]]>
     </update>
+    
+    
+    
+    
+    <select id="selectPostlikeListFromBuid" resultType="edu.sejong.ex.vo.PostlikeVO">
+        <![CDATA[
+			select * from postlike where pnumber = #{pnumber} and buid = #{buid}
+        ]]>
+    </select>
+    <select id="selectPostlikeListFromPnumber" resultType="edu.sejong.ex.vo.PostlikeVO">
+        <![CDATA[
+			select * from postlike where pnumber = #{pnumber}
+        ]]>
+    </select>
+    
+    <insert id="insertPostlike">
+        <![CDATA[
+			insert into postlike values(
+			    #{pnumber},
+			    #{buid}
+			)
+		]]>
+    </insert>
     <update id="updateBoardPlike">
         <![CDATA[
 			update board set plike = #{plike} where pnumber = #{pnumber}
 		]]>
     </update>
-    
-    
     
     
     

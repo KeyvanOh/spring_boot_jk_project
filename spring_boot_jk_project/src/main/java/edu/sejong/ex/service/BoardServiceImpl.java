@@ -9,6 +9,7 @@ import edu.sejong.ex.mapper.BoardMapper;
 import edu.sejong.ex.vo.BoardVO;
 import edu.sejong.ex.vo.BuserVO;
 import edu.sejong.ex.vo.CommentsVO;
+import edu.sejong.ex.vo.PostlikeVO;
 import edu.sejong.ex.vo.PostviewVO;
 import lombok.extern.slf4j.Slf4j;
 
@@ -87,7 +88,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<PostviewVO> getViewtListFromBuid(int pnumber, String buid) {
+	public List<PostviewVO> getViewListFromBuid(int pnumber, String buid) {
 		log.info("getViewtListFromBuid()..log..");
 
 		return boardMapper.selectPostviewListFromBuid(pnumber, buid);
@@ -95,7 +96,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<PostviewVO> getViewtListFromPnumber(int pnumber) {
+	public List<PostviewVO> getViewListFromPnumber(int pnumber) {
 		log.info("getViewtListFromPnumber()..log..");
 
 		return boardMapper.selectPostviewListFromPnumber(pnumber);
@@ -104,15 +105,36 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void phitUp(int pnumber, int phit) {
 		log.info("phitUp()..log..");
-		
+
 		boardMapper.updateBoardPhit(pnumber, phit);
 	}
 
 	@Override
 	public void plikeUp(int pnumber, int plike) {
 		log.info("plikeUp()..log..");
-		
+
 		boardMapper.updateBoardPlike(pnumber, plike);
+	}
+
+	@Override
+	public List<PostlikeVO> getLikeListFromBuid(int pnumber, String buid) {
+		log.info("getLikeListFromBuid()..log..");
+
+		return boardMapper.selectPostlikeListFromBuid(pnumber, buid);
+	}
+
+	@Override
+	public void likeUp(int pnumber, String buid) {
+		log.info("likeUp()..log..");
+
+		boardMapper.insertPostlike(pnumber, buid);
+	}
+
+	@Override
+	public List<PostlikeVO> getLikeListFromPnumber(int pnumber) {
+		log.info("getLikeListFromPnumber()..log..");
+
+		return boardMapper.selectPostlikeListFromPnumber(pnumber);
 	}
 
 }

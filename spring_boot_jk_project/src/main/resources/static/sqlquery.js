@@ -145,22 +145,7 @@ let teststs = function() {
 	
 }
 
-let ajaxGetViewfromPnumber = function(pnumber) {
-	let view = 0;
-	$.ajax({
-		type: "post",
-		url: "/board/ajax_get_view_from_pnumber",
-		data: 
-		{
-			'pnumber': pnumber
-		},
-		async: false,
-		success: function(data, status) {
-			view = data.length;
-		},
-	});
-	return view;
-};
+
 
 let ajaxGetViewfromBuid = function(pnumber, buid) {
 	$.ajax({
@@ -180,6 +165,23 @@ let ajaxGetViewfromBuid = function(pnumber, buid) {
 			};				
 		},
 	});
+};
+
+let ajaxGetViewfromPnumber = function(pnumber) {
+	let view = 0;
+	$.ajax({
+		type: "post",
+		url: "/board/ajax_get_view_from_pnumber",
+		data: 
+		{
+			'pnumber': pnumber
+		},
+		async: false,
+		success: function(data, status) {
+			view = data.length;
+		},
+	});
+	return view;
 };
 
 let ajaxView = function(pnumber, buid) {
@@ -217,9 +219,67 @@ let ajaxUpdatePhit = function(pnumber, phit) {
 
 
 
+let ajaxGetLikefromBuid = function(pnumber, buid) {
+	//console.log("pnumber: " + pnumber);
+	//console.log("buid: " + buid);
+	let possible = false;
+	$.ajax({
+		type: "post",
+		url: "/board/ajax_get_like_from_buid",
+		data: 
+		{
+			'pnumber': pnumber,
+			'buid': buid
+		},
+		async: false,
+		success: function(data, status) {
+			console.log(data);
+			console.log("the length is " + data.length);
+			if (data.length == 0) {
+				//console.log("the length is " + data.length);
+				//ajaxLike(pnumber, buid);
+				possible = true;
+			} else {
+				possible = false;
+			};				
+		},
+	});
+	return possible;
+};
+
+let ajaxGetLikefromPnumber = function(pnumber) {
+	let view = 0;
+	$.ajax({
+		type: "post",
+		url: "/board/ajax_get_like_from_pnumber",
+		data: 
+		{
+			'pnumber': pnumber
+		},
+		async: false,
+		success: function(data, status) {
+			view = data.length;
+		},
+	});
+	return view;
+};
 
 
 
+let ajaxLike = function(pnumber, buid) {
+	$.ajax({
+		type: "post",
+		url: "/board/ajax_like",
+		data: 
+		{
+			'pnumber': pnumber,
+			'buid': buid
+		},
+		async: false,
+		success: function(data, status) {
+		},
+	});
+};
 
 let ajaxUpdatePlike = function(pnumber, plike) {
 	$.ajax({

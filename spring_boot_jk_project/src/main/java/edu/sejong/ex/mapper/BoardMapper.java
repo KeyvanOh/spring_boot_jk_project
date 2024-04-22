@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import edu.sejong.ex.vo.BoardVO;
 import edu.sejong.ex.vo.BuserVO;
 import edu.sejong.ex.vo.CommentsVO;
+import edu.sejong.ex.vo.PostlikeVO;
 import edu.sejong.ex.vo.PostviewVO;
 
 @Mapper
@@ -42,6 +43,15 @@ public interface BoardMapper {
 	void updateBoardPhit(int pnumber, int phit);
 
 	void updateBoardPlike(int pnumber, int plike);
+
+	List<PostlikeVO> selectPostlikeListFromBuid(int pnumber, String buid);
+
+	void insertPostlike(int pnumber, String buid);
+
+	List<PostlikeVO> selectPostlikeListFromPnumber(int pnumber);
+	
+	
+	
 	
 	
 	

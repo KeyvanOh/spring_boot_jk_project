@@ -5,6 +5,7 @@ import java.util.List;
 import edu.sejong.ex.vo.BoardVO;
 import edu.sejong.ex.vo.BuserVO;
 import edu.sejong.ex.vo.CommentsVO;
+import edu.sejong.ex.vo.PostlikeVO;
 import edu.sejong.ex.vo.PostviewVO;
 
 public interface BoardService {
@@ -28,13 +29,19 @@ public interface BoardService {
 
 	void viewUp(int pnumber, String buid);
 
-	List<PostviewVO> getViewtListFromBuid(int pnumber, String buid);
+	List<PostviewVO> getViewListFromBuid(int pnumber, String buid);
 
-	List<PostviewVO> getViewtListFromPnumber(int pnumber);
+	List<PostviewVO> getViewListFromPnumber(int pnumber);
 
 	void phitUp(int pnumber, int phit);
 
 	void plikeUp(int pnumber, int plike);
+
+	List<PostlikeVO> getLikeListFromBuid(int pnumber, String buid);
+
+	void likeUp(int pnumber, String buid);
+
+	List<PostlikeVO> getLikeListFromPnumber(int pnumber);
 
 
 }

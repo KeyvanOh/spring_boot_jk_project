@@ -14,6 +14,7 @@ import edu.sejong.ex.service.BoardService;
 import edu.sejong.ex.vo.BoardVO;
 import edu.sejong.ex.vo.BuserVO;
 import edu.sejong.ex.vo.CommentsVO;
+import edu.sejong.ex.vo.PostlikeVO;
 import edu.sejong.ex.vo.PostviewVO;
 import lombok.extern.slf4j.Slf4j;
 
@@ -143,16 +144,16 @@ public class BoardRestController {
 	}
 
 	@RequestMapping("/ajax_get_view_from_buid")
-	public List<PostviewVO> ajaxViewtListFromBuid(@RequestParam("pnumber") int pnumber,
+	public List<PostviewVO> ajaxViewListFromBuid(@RequestParam("pnumber") int pnumber,
 			@RequestParam("buid") String buid) {
-		log.info("ajaxViewtListFromBuid()..");
-		return boardService.getViewtListFromBuid(pnumber, buid);
+		log.info("ajaxViewListFromBuid()..");
+		return boardService.getViewListFromBuid(pnumber, buid);
 	}
 
 	@RequestMapping("/ajax_get_view_from_pnumber")
-	public List<PostviewVO> ajaxViewtListFromPnumber(@RequestParam("pnumber") int pnumber) {
-		log.info("ajaxViewtListFromPnumber()..");
-		return boardService.getViewtListFromPnumber(pnumber);
+	public List<PostviewVO> ajaxViewListFromPnumber(@RequestParam("pnumber") int pnumber) {
+		log.info("ajaxViewListFromPnumber()..");
+		return boardService.getViewListFromPnumber(pnumber);
 	}
 
 	@RequestMapping("/ajax_update_phit")
@@ -167,6 +168,33 @@ public class BoardRestController {
 			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 		return entity;
+	}
+
+	@RequestMapping("/ajax_like")
+	public ResponseEntity<String> ajaxLike(@RequestParam("pnumber") int pnumber, @RequestParam("buid") String buid) {
+		log.info("ajaxLike()..");
+		ResponseEntity<String> entity = null;
+		try {
+			boardService.likeUp(pnumber, buid);
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+
+	@RequestMapping("/ajax_get_like_from_buid")
+	public List<PostlikeVO> ajaxLikeListFromBuid(@RequestParam("pnumber") int pnumber,
+			@RequestParam("buid") String buid) {
+		log.info("ajaxLikeListFromBuid()..");
+		return boardService.getLikeListFromBuid(pnumber, buid);
+	}
+
+	@RequestMapping("/ajax_get_like_from_pnumber")
+	public List<PostlikeVO> ajaxLikeListFromPnumber(@RequestParam("pnumber") int pnumber) {
+		log.info("ajaxLikeListFromPnumber()..");
+		return boardService.getLikeListFromPnumber(pnumber);
 	}
 
 	@RequestMapping("/ajax_update_plike")
