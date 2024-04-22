@@ -97,9 +97,22 @@ let showPost = function(value) {
 		.on("error", function() {
 			$(this).remove();
 		})
-		.appendTo(divPost);
-	$("<p>").text(value.pcontent)
-		.appendTo(divPost);
+		.appendTo(divPost)
+	;
+	
+	//console.log(value.pcontent);
+	//console.log(value.pcontent.split(/\r?\n/));
+	
+	$.each(value.pcontent.split(/\r?\n/), function( index, value2 ) {
+		$("<p>").text(value2)
+			.appendTo(divPost)
+			//.css("text-align", "left")
+		;
+	});
+	
+	//$("<p>").text(value.pcontent)
+	//	.appendTo(divPost)
+	//;
 		
 	$("<p>").text("v")
 		.appendTo(divPost)
@@ -285,7 +298,20 @@ let showPost = function(value) {
 			console.log("444234");
 		};
 		
-		console.log("235");
+		
+		
+		
+		
+		
+		/*
+		let ableToLike = ajaxGetLikefromBuid(value.pnumber, buid);
+		console.log(ableToLike);
+		if (ableToLike == true) {
+		};
+		*/
+
+		
+		console.log("23777253");
 	};
 	
 	
@@ -421,6 +447,16 @@ let loadList = function() {
 			sessionStorage.clear();
 			$("#spanLogout").css("display", "none");
 			$("#spanLogin").css("display", "block");
+			openedCnumber.clear();
+			showScene(sceneNumber);
+			
+			//here here
+			//$(".pPtitle").text($(".pPtitle").children("h1").text());
+			//$(".pPtitle").text($(this).children("h1").text());
+			//console.log($(".pPtitle").children("h1").text());
+			//$(".pPtitle").parent().children("div").remove();
+			
+			//let classPPtitle = $(".pPtitle");
 		})
 	;
 	
@@ -476,6 +512,7 @@ let loadList = function() {
 			pPtitle.text(value.ptitle)
 				.css("padding", "0px")
 				.css("margin", "0px")
+				.addClass("pPtitle")
 				.on("click", function() {
 					if (openedCnumber.has(value.pnumber) == false) {
 						openedCnumber.add(value.pnumber);
@@ -491,7 +528,6 @@ let loadList = function() {
 					};
 				})
 			;
-			
 			
 			
 			  $("<td>")
@@ -555,19 +591,57 @@ let loadList = function() {
 			;
 			  $("<td>").text(value.plike)
 			  	.appendTo(tr)
+				.attr("id", "tdPlike" + value.pnumber)
 				.on("click", function() {
 					
 					if (openedCnumber.has(value.pnumber)) {
 						
-						if (sessionStorage.getItem('buid') != null) {
-							if (confirm("Do you like this post?") == true) {
+						let buid = sessionStorage.getItem('buid');
+						//if (sessionStorage.getItem('buid') != null) {
+						if (buid != null) {
+							
+							
+							
+							
+							
+							let ableToLike = ajaxGetLikefromBuid(value.pnumber, buid);
+							console.log(ableToLike);
+							if (ableToLike == true) {
+								if (confirm("Do you like this post?") == true) {
+									
+									
+									
+									//ajaxLike(pnumber, buid);
+									ajaxLike(value.pnumber, buid);
+									
+									
+									
+									let plike = ajaxGetLikefromPnumber(value.pnumber);
+									if (value.plike != plike) {
+										console.log(plike);
+										
+										//ajaxUpdatePhit(value.pnumber, phit);
+										ajaxUpdatePlike(value.pnumber, plike);
+										
+										//$("#tdPhit" + value.pnumber).text(phit);
+										$("#tdPlike" + value.pnumber).text(plike);
+										
+									};
+									
+									
+									
+									
+									console.log("like up the post" + value.pnumber);
+									
+								} else {
+									console.log("ok whatever");
+								};
 								
-								console.log("like up the post" + value.pnumber);
-								
-								
-							} else {
-								console.log("ok whatever");
 							};
+							
+							
+							
+							
 							
 							
 							
@@ -739,7 +813,12 @@ setInterval(
 	},
 	*/
 	function() {
-		showScene(sceneNumber)
+		
+		if ($("#postModal").css("display") == "none") {
+			showScene(sceneNumber);
+		};
+		//console.log($("#postModal").css("display"));
+		//showScene(sceneNumber)
 	},
 	60000
 );
