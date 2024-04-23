@@ -23,7 +23,10 @@
 ></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-
+<meta name="_csrf" content="${_csrf.token}"/>
+<!-- default header name is X-CSRF-TOKEN -->
+<meta name="_csrf_header" content="${_csrf.headerName}"/>
+<!-- ... -->
 </head>
 <body>
 	<header>
@@ -41,6 +44,16 @@
 <script>
 
 console.log("23543");
+
+let token = $("meta[name='_csrf']").attr("content");
+let header = $("meta[name='_csrf_header']").attr("content");
+
+console.log("token: " + token);
+console.log("header: " + header);
+
+$(document).ajaxSend(function(e, xhr, options) {
+    xhr.setRequestHeader(header, token);
+});
 
 //buildPostModal();
 
