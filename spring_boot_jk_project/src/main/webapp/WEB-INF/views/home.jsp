@@ -41,8 +41,16 @@ USER HOME HERE
              <p>당신은 어드민입니다.</p>
           </sec:authorize>  
 	
+	<p><sec:authentication property="principal.email"/></p>
+	<p><sec:authentication property="principal.emp"/></p>
+	<p><sec:authentication property="principal.emp.ename"/></p>
+	<p><sec:authentication property="principal.emp.sal"/></p>
+	<p><sec:authentication property="principal.emp.hiredate"/></p>
 	
-	
+	<p><sec:authentication property="principal.cart"/></p>
+<%-- 	<p><sec:authentication property="principal.cart.product"/></p>
+	<p><sec:authentication property="principal.cart.count"/></p>
+ --%>	
 	
 </sec:authorize>
 

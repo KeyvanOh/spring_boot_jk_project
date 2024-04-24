@@ -1,22 +1,58 @@
 package edu.sejong.ex.vo;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+
 @Slf4j
 @Setter
 //@Getter
 public class UserDetailsVO implements UserDetails {
 	private String username;
 	private String password;
+
 	// private List<GrantedAuthority> authorities;
+
+	private String email = "admin@admin.com";
+
+	private EmpVO2 emp;
+
+	public String getEmail() {
+		return this.email;
+	}
+
+	public EmpVO2 getEmp() {
+		return this.emp;
+	}
+
+	private CartVO cart = new CartVO();
+
+	public CartVO getCart() {
+		return this.cart;
+	}
+
 	private GrantedAuthority authority;
-	// public UserDetailsVO(UserVO user) {
-	public UserDetailsVO(UserAuthorityVO user) {
+
+	/*
+	 * // public UserDetailsVO(UserVO user) { public UserDetailsVO(UserAuthorityVO
+	 * user) { this.setUsername(user.getUsername());
+	 * this.setPassword(user.getPassword()); // this.setAuthorities(authorities); //
+	 * this.setAuthorities(user); // this.setAuthority(user.getAuthority()); //
+	 * this.setAuthority(authority); // this.setAuthority(user);
+	 * this.setAuthority(user); }
+	 */
+
+	// private EmpVO2 emp;
+
+	public UserDetailsVO(UserAuthorityVO user, EmpVO2 empVO) {
+	//public UserDetailsVO(UserAuthorityVO user, EmpVO2 empVO, CartVO cart) {
 		this.setUsername(user.getUsername());
 		this.setPassword(user.getPassword());
 		// this.setAuthorities(authorities);
@@ -25,7 +61,10 @@ public class UserDetailsVO implements UserDetails {
 		// this.setAuthority(authority);
 		// this.setAuthority(user);
 		this.setAuthority(user);
+		this.emp = empVO;
+		//this.cart = cart;
 	}
+
 	/*
 	 * //public void setAuthorities(UserVO user) { public void
 	 * setAuthorities(UserAuthorityVO user) { List<GrantedAuthority>
@@ -45,26 +84,32 @@ public class UserDetailsVO implements UserDetails {
 		list.add(new SimpleGrantedAuthority(authority.getAuthority()));
 		return list;
 	}
+
 	@Override
 	public String getPassword() {
 		return this.password;
 	}
+
 	@Override
 	public String getUsername() {
 		return this.username;
 	}
+
 	@Override
 	public boolean isAccountNonExpired() {
 		return true;
 	}
+
 	@Override
 	public boolean isAccountNonLocked() {
 		return true;
 	}
+
 	@Override
 	public boolean isCredentialsNonExpired() {
 		return true;
 	}
+
 	@Override
 	public boolean isEnabled() {
 		return true;

@@ -52,9 +52,6 @@ public class LoginController {
 		System.out.println(user2.getAuthorities());
 		System.out.println(user2.getClass());
 
-		
-		
 		return "login/login";
 	}
-
 }
