@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
-ADMIN HOME HERE
+USER HOME HERE
 
 <!-- <p>principal: <sec:authentication property="principal"/></p> -->
 
@@ -21,6 +22,17 @@ ADMIN HOME HERE
 
 <p><a href="<c:url value="/" />">홈</a></p>
 
+<p>principal: <sec:authentication property="principal"/></p>
+<p>Welcome, <sec:authentication property="principal.username"/>.</p>
+<p>your password is <sec:authentication property="principal.password"/>.</p>
+
+<sec:authorize access="isAnonymous()">
+	<p><a href="<c:url value="/user/login"/>"></a></p>
+</sec:authorize>
+<sec:authorize access="isAuthenticated()">
+	<%-- <p><a href="<c:url value="/user/login"/>"></a></p> --%>
+	<p>Welcome, <sec:authentication property="principal.username"/>.</p>
+</sec:authorize>
 
    <h3>
        [<a href="<c:url value="/add/addForm" />">회원가입</a>]

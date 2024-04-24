@@ -20,4 +20,7 @@ public interface UserMapper {
 	public void insertUser(UserVO userVO);
 
 	public void insertAuthorities(UserVO UserVO);
+	public void insertAuthoritiesAdmin(UserVO UserVO);
+
+	List<String> selectUser(String username, String password);
 }

@@ -1,7 +1,8 @@
 package edu.sejong.ex.vo;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
@@ -20,14 +21,31 @@ AUTHORITY NOT NULL VARCHAR2(50)
  */
 
 @Setter
-@Getter
+//@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class UserAuthorityVO {
+public class UserAuthorityVO implements GrantedAuthority {
 	private String username;
 	private String password;
 	private int enabled;
+
+	public String getUsername() {
+		return username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public int getEnabled() {
+		return enabled;
+	}
+
+	@Override
+	public String getAuthority() {
+		return authority;
+	}
 
 	// private String username;
 	private String authority;

@@ -1,5 +1,7 @@
 package edu.sejong.ex.vo;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,4 +30,7 @@ public class UserVO {
 	private String username;
 	private String password;
 	private int enabled;
+
+	//private List<AuthoritiesVO> authList;
+
 }

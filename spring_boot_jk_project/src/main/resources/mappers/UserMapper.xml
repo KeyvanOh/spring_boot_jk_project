@@ -8,6 +8,7 @@
         	select users.*, authorities.authority 
         	from users, authorities 
         	where users.username = authorities.username and users.username = #{username}
+        	order by authorities.authority
         ]]>
     </select>
     
@@ -38,8 +39,19 @@
 			)
 		]]>
     </insert>
+    <insert id="insertAuthoritiesAdmin">
+        <![CDATA[
+			insert into authorities values (
+			    #{username},
+			    'ROLE_ADMIN'
+			)
+		]]>
+    </insert>
     
-    
-    
+    <select id="selectUser" resultType="String">
+        <![CDATA[
+			select username from users where username = #{username} and password = #{password}
+        ]]>
+    </select>    
     
 </mapper>

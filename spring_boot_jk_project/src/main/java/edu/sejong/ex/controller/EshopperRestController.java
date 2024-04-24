@@ -49,11 +49,19 @@ public class EshopperRestController {
 		// return empService.getEmpSalgradeDeptVOList();
 
 		UserVO userVO = new UserVO(username, password, 1
+		// UserVO userVO = new UserVO(username, password, 1, null
 
 		);
 
 		eshopperService.register(userVO);
 
+	}
+
+	@RequestMapping("/ajaxLogin")
+	public List<String> ajaxLogin(@RequestParam("username") String username,
+			@RequestParam("password") String password) {
+		log.info("ajaxLogin()..");
+		return eshopperService.login(username, password);
 	}
 
 }

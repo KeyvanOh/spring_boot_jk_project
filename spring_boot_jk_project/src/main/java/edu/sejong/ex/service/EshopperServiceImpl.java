@@ -1,5 +1,7 @@
 package edu.sejong.ex.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,12 @@ public class EshopperServiceImpl implements EshopperService {
 		userMapper.insertUser(userVO);
 		userMapper.insertAuthorities(userVO);
 
+	}
+
+	@Override
+	public List<String> login(String username, String password) {
+		log.info("login()..");
+		return userMapper.selectUser(username, password);
 	}
 
 }
