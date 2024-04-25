@@ -1,11 +1,15 @@
 package edu.sejong.ex.mapper;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
+import edu.sejong.ex.vo.UserAuthorityVO;
 import edu.sejong.ex.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
 
@@ -42,6 +46,7 @@ class UserMapperTest {
 
 	}
 
+	@Disabled
 	@Test
 	void testInsertUser() {
 		UserVO user = new UserVO();
@@ -51,8 +56,33 @@ class UserMapperTest {
 
 		userMapper.insertUser(user);
 		userMapper.insertAuthorities(user);
-		//userMapper.insertAuthoritiesAdmin(user);
+		// userMapper.insertAuthoritiesAdmin(user);
 
+	}
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
+	@Disabled
+	@Test
+	void testInsertUser2() {
+		UserVO user = new UserVO();
+		user.setUsername("member3");
+		user.setPassword(passwordEncoder.encode("member3"));
+		user.setEnabled(1);
+
+		userMapper.insertUser(user);
+		userMapper.insertAuthorities(user);
+		// userMapper.insertAuthoritiesAdmin(user);
+
+	}
+
+	@Test
+	void testMatcher() {
+		// UserVO user = userMapper.getUser("admin2");
+		UserAuthorityVO user = userMapper.getUser("admin2").get(0);
+		boolean isMatch = passwordEncoder.matches("admin2", user.getPassword());
+		assertEquals(isMatch, true);
 	}
 
 }
