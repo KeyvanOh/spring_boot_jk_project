@@ -9,9 +9,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import edu.sejong.ex.security.CustomNoOpPasswordEncoder;
 import edu.sejong.ex.security.CustomUserDetailsService;
 import edu.sejong.ex.security.EmpUserDetailsService;
 
@@ -33,8 +33,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
-		// return new BCryptPasswordEncoder();
-		return new CustomNoOpPasswordEncoder();
+		return new BCryptPasswordEncoder();
+		// return new CustomNoOpPasswordEncoder();
 	}
 
 	@Override
@@ -47,14 +47,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		// auth.userDetailsService(customUserDetailsService).passwordEncoder(new
 		// BCryptPasswordEncoder());
-		//auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
-		auth.userDetailsService(empUserDetailsService).passwordEncoder(passwordEncoder());
+		auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
+		// auth.userDetailsService(empUserDetailsService).passwordEncoder(passwordEncoder());
 
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		//http.csrf().disable();
+		// http.csrf().disable();
 		http.authorizeRequests().antMatchers("/user/**").hasAnyRole("USER").antMatchers("/admin/**").hasAnyRole("ADMIN")
 				// .antMatchers("/board/**").hasAnyRole("ADMIN")
 				.antMatchers("/emp/list").hasAnyRole("ADMIN").antMatchers("/board/list").hasAnyRole("ADMIN")

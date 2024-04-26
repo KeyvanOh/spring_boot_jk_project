@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import edu.sejong.ex.mapper.BoardMapper;
 import edu.sejong.ex.vo.BoardVO;
@@ -37,6 +38,7 @@ public class BoardServiceImpl implements BoardService {
 		return boardMapper.selectListWithBuid(buid);
 	}
 
+	@Transactional
 	@Override
 	public void registerBuser(BuserVO vo) {
 		log.info("registerBuser()..log..");
@@ -44,6 +46,7 @@ public class BoardServiceImpl implements BoardService {
 		boardMapper.insertIntoBuser(vo);
 	}
 
+	@Transactional
 	@Override
 	public void writePost(BoardVO vo) {
 		log.info("writePost()..log..");
@@ -58,6 +61,7 @@ public class BoardServiceImpl implements BoardService {
 		return boardMapper.selectCountOfBoard();
 	}
 
+	@Transactional
 	@Override
 	public void addComment(CommentsVO vo) {
 		log.info("addComment()..log..");
@@ -73,6 +77,7 @@ public class BoardServiceImpl implements BoardService {
 		return boardMapper.selectCommentList(pnumber);
 	}
 
+	@Transactional
 	@Override
 	public void deletePost(int pnumber) {
 		log.info("deletePost()..log..");
@@ -80,6 +85,7 @@ public class BoardServiceImpl implements BoardService {
 		boardMapper.deletePostFromPnumber(pnumber);
 	}
 
+	@Transactional
 	@Override
 	public void viewUp(int pnumber, String buid) {
 		log.info("viewUp()..log..");
@@ -102,6 +108,7 @@ public class BoardServiceImpl implements BoardService {
 		return boardMapper.selectPostviewListFromPnumber(pnumber);
 	}
 
+	@Transactional
 	@Override
 	public void phitUp(int pnumber, int phit) {
 		log.info("phitUp()..log..");
@@ -109,6 +116,7 @@ public class BoardServiceImpl implements BoardService {
 		boardMapper.updateBoardPhit(pnumber, phit);
 	}
 
+	@Transactional
 	@Override
 	public void plikeUp(int pnumber, int plike) {
 		log.info("plikeUp()..log..");
@@ -123,6 +131,7 @@ public class BoardServiceImpl implements BoardService {
 		return boardMapper.selectPostlikeListFromBuid(pnumber, buid);
 	}
 
+	@Transactional
 	@Override
 	public void likeUp(int pnumber, String buid) {
 		log.info("likeUp()..log..");

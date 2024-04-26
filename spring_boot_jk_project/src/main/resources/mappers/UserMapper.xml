@@ -4,20 +4,20 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.sejong.ex.mapper.UserMapper">
     <select id="getUser" resultType="edu.sejong.ex.vo.UserAuthorityVO">
-<!--         <![CDATA[
+        <![CDATA[
         	select users.*, authorities.authority 
         	from users, authorities 
         	where users.username = authorities.username and users.username = #{username}
         	order by authorities.authority
         ]]>
- -->        
+      
 <!-- code1 -->
-        <![CDATA[
+<!--         <![CDATA[
         	select emp.*, emp.ename as username, emp.empno as password, fakeauthorities.*
         	from emp, fakeauthorities
         	where emp.ename = #{username}
         ]]>
-        
+         -->
         
     </select>
     
